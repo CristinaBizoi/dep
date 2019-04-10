@@ -53,6 +53,10 @@ class Db{
     public function closeDb(){
         $this->con->close();
     }
+    //returnam ultimul id inserat
+    protected function getLastId(){
+        return $this->con->insert_id;
+    }
 }
 
 

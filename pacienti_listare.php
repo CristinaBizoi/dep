@@ -43,7 +43,11 @@
                     <td><?php echo $pacient["prenume"]; ?></td>
                     <td><?php echo $pacient["cnp"]; ?></td>
                     <td><?php echo $pacient["telefon"]; ?></td>
-                    <td><a href="pacient_editare?id=<?php echo $pacient["id"]; ?>"<i class="far fa-edit"></i></a></td>
+                    <td>
+                      <a href="pacient_fise?id=<?php echo $pacient["id"]; ?>" title="Vezi fisele medicale"><i class="fas fa-clipboard-list"></i></i></a>
+                      <a href="fisa_adaugare?id=<?php echo $pacient["id"]; ?>" title="Adaugare fisa medicala"><i class="fas fa-plus"></i></a>
+                      <a href="pacient_editare?id=<?php echo $pacient["id"]; ?>" title="Editeaza utilizator"><i class="far fa-edit"></i></a>
+                    </td>
                 </tr>
                 <?php
                 }
