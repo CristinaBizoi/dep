@@ -74,15 +74,19 @@ require_once("./_inc/models/Pacienti.php");
 $pacientObject = new Pacienti();
 $pacient = $pacientObject->getPacient($id);
 
-//TODO: verificari daca nu exista pacientul
+//verificam daca am gasit date despre pacient (daca exista)
+if(empty($pacient)){
+    header('Location:./pacienti_listare?mesaj='.urlencode('Utilizatorul nu exista'));
+    exit();
+}
 include("./header.php");
 ?>
 
 <div class="container-fluid">
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-        <li class="breadcrumb-item"><a href="/pacienti_listare">Pacienti</a></li>
+        <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="./pacienti_listare">Pacienti</a></li>
         <li class="breadcrumb-item active">Adaugare fisa</li>
     </ol>
 

@@ -15,13 +15,30 @@ class FiseMedicale extends Db{
         $rezultat = $this->getQuerry($query);
         return $this->getLastId();
     }
-    public function editFisa($id,$data){
-
-    }
     public function getPacientFise($id){
-        $query= "SELECT * FROM `fise_medicale` WHERE `id_pacient`='".$id."'";
+        $query= "SELECT * FROM `fise_medicale` WHERE `id_pacient`='".$id."' ORDER BY `data_adaugare` DESC";
         $rezultat = $this->getQuerry($query);
         return  $this->getArray($rezultat);       
+    }
+    public function getFisa($id){
+        //verific daca a fost trimis un id valid (daca nu e gol si daca e int) 
+        if(empty((int)$id) ){
+            return array();
+        }
+        $query = " SELECT fm.`data_adaugare`, fm.`observatii`, fm.`tip_fisa`, fm.`id_spital`,
+            p.`nume` as nume_pacient, p.`prenume` as prenume_pacient, p.`cnp`, p.`data_nastere`, p.`sex`, p.`telefon`, p.`email`,
+            u.`id` as id_user, u.`nume` as nume_utilizator, u.`prenume` as prenume_utilizator
+        FROM `fise_medicale` as fm
+        LEFT JOIN `pacienti` as p ON (fm.`id_pacient` = p.`id`)
+        LEFT JOIN `utilizatori` as u ON (fm.`id_utilizator` = u.`id`)
+        WHERE fm.`id` = '".$id."'
+        ";
+
+        // echo  $query;
+          $rezultat = $this->getQuerry($query);
+
+          //pentru ca returnam doar un rand (fiind o relatie de one to one intre toate tabelele)
+          return  $this->getRow($rezultat);  
     }
 }
 ?>
