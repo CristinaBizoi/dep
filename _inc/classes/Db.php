@@ -27,7 +27,7 @@ class Db{
             
             }
         }else{
-            echo "0 rezultate";
+            // echo "0 rezultate";
         }
         return $re;
         

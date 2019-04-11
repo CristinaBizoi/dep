@@ -16,8 +16,14 @@ class Diagnostic extends Db{
     public function removeDiagnostic(){
 
     }
-    public function getDiagnostice(){
-        
+    public function getDiagnosticeByFisa($id){
+         //verific daca a fost trimis un id valid (daca nu e gol si daca e int) 
+         if(empty((int)$id) ){
+            return array();
+        }
+        $query= "SELECT * FROM `diagnostice` WHERE `id_fisa`='".$id."'";
+        $rezultat = $this->getQuerry($query);
+        return  $this->getArray($rezultat); 
     }
 }
 

@@ -1,31 +1,36 @@
 <?php
 //id-ul pacientului
-if(isset($_GET["id"]) && $_GET["id"]>0){
-    $id = $_GET["id"];
-}else{
-    exit();
-}
-// incarcam fisierele
-  require_once('./_inc/models/Pacienti.php');
-  require_once("./_inc/models/FiseMedicale.php");
-  //instantiem modele
-  $pacientiModel = new Pacienti();
-  $fiseMedicaleModel = new FiseMedicale();
-  
-  //selectam datele despre pacient
-  $pacient = $pacientiModel->getPacient($id);
-  //selectam fisele medicale pentru pacientul selectat
-  $fise = $fiseMedicaleModel->getPacientFise($id);
+    if(isset($_GET["id"]) && $_GET["id"]>0){
+        $id = $_GET["id"];
+    }else{
+        exit();
+    }
+    // incarcam fisierele
+    require_once('./_inc/models/Pacienti.php');
+    require_once("./_inc/models/FiseMedicale.php");
+    //instantiem modele
+    $pacientiModel = new Pacienti();
+    $fiseMedicaleModel = new FiseMedicale();
+    
+    //selectam datele despre pacient
+    $pacient = $pacientiModel->getPacient($id);
+    //verificam daca am gasit date despre pacient (daca exista)
+    if(empty($pacient)){
+        header('Location:./pacienti_listare?mesaj='.urlencode('Utilizatorul nu exista'));
+        exit();
+    }
+    //selectam fisele medicale pentru pacientul selectat
+    $fise = $fiseMedicaleModel->getPacientFise($id);
 
-  //TODO: verificari daca nu exista pacientul
-  include("./header.php");
+    //TODO: verificari daca nu exista pacientul
+    include("./header.php");
 ?>
 
       <div class="container-fluid">
 
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/pacienti_listare">Pacienti</a></li>
+            <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="./pacienti_listare">Pacienti</a></li>
             <li class="breadcrumb-item active">Fise pacient</li>
         </ol>
 
@@ -68,7 +73,7 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
                     <td><?php echo $fisa["tip_fisa"]; ?></td>
                     <td><?php echo date("d.m.Y H:i:s",strtotime($fisa["data_adaugare"])); ?></td>
                     <td>
-                      <a href="fisa_vizualizare?id=<?php echo $pacient["id"]; ?>" title="Vezi fisa medicala"><i class="far fa-eye"></i></a>
+                      <a href="fisa_vizualizare?id=<?php echo $fisa["id"]; ?>" title="Vezi fisa medicala"><i class="far fa-eye"></i></a>
                     </td>
                 </tr>
                 <?php
