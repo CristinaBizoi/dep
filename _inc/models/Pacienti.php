@@ -39,6 +39,11 @@ class Pacienti extends Db{
             `sex` = '".$post["sex"]."'
          WHERE `id`='".$id."'";
          $rezultat = $this->getQuerry($query);
+    }
+    public function deletePacient($id){
+        $query = "DELETE FROM `pacienti` 
+        WHERE `id`='".$id."'";
+        $rezultat = $this->getQuerry($query);
 
     }
     
