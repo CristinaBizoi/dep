@@ -13,7 +13,7 @@
           <span>Pacienti</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="./utilizatori">
+        <a class="nav-link" href="./utilizatori_listare">
         <i class="fas fa-users"></i>
           <span>Utilizatori</span></a>
       </li>

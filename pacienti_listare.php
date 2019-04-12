@@ -1,7 +1,9 @@
 <?php
     if(isset($_GET["cauta_pacient"]) && strlen($_GET["cauta_pacient"])>0){
       $termen = $_GET["cauta_pacient"];
-      $where = "`pacient`.`nume` LIKE '%".$termen."%'";
+      $where = "`pacienti`.`nume` LIKE '%".$termen."%'
+            OR `pacienti`.`prenume` LIKE '%".$termen."%'
+            OR `pacienti`.`cnp` LIKE '%".$termen."%'";
       
       /* cautare dupa un text
       = trebuie sa fie identic
@@ -41,11 +43,11 @@
             <div class="col-md-12">
             <form class="form-inline" action="./pacienti_listare" method="get">
                 <div class="form-group">
-                    <label for="name">Cauta</label>
+                    <label for="name">Cauta Pacient:</label> <br>
 
-                    <input type="text" class="form-control" name="cauta_pacient" id="name" placeholder="Artiocul meu" value="<?php echo $termen; ?>">
+                    <input type="text" class="form-control" name="cauta_pacient" id="name" placeholder="Cauta pacient" value="<?php echo $termen; ?>">
                 </div>
-                <button type="submit" class="btn btn-default">Cauta</button>
+                <button type="submit" class="btn btn-light">Cauta</button>
                 </form>
             </div>
         </div>

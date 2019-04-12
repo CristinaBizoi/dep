@@ -8,7 +8,7 @@
     require_once('./_inc/models/Spitale.php');
     $utilizatorObject = new Utilizatori();
     $spitaleObject = new Spitale();
-    if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changedetails"){{
+    if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changedetails"){
         $utilizatorObject->editUtilizator($id, $_POST);
         header('Location:./utilizatori_listare');
         exit();
@@ -116,7 +116,7 @@ include("./header.php");
             <input type="hidden" name="act" value="changedetails">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        
+
         <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>">
             <div class="row">
                 <div class="col-6">

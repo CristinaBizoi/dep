@@ -32,6 +32,13 @@ class Utilizatori extends Db{
         $utilizator = $this->getRow($rezultat);
         return $utilizator;
     }
+    public function loginUtilizator($email){
+        $query = "SELECT `utilizatori`.`email`,  `utilizatori`.`parola` FROM `utilizatori`
+                WHERE `utilizatori`.`email`='".$email."'";
+        $rezultat = $this->getQuerry($query);
+        $utilizator = $this->getRow($rezultat);
+        return $utilizator;
+    }
     public function editUtilizator($id, $post){
         $query = "UPDATE `utilizatori` SET 
             `nume` ='".$post['nume_utilizator']."',
