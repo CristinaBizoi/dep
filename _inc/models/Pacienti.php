@@ -15,8 +15,9 @@ class Pacienti extends Db{
               ";
         $rezultat = $this->getQuerry($query);
     }
-    public function getPacienti(){
-        $query= "SELECT * FROM `pacienti`";
+    public function getPacienti($where){
+        $query= "SELECT * FROM `pacienti`
+            WHERE ".$where."'";
         $rezultat = $this->getQuerry($query);
         $pacienti = $this->getArray($rezultat);
         return $pacienti;

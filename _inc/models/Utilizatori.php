@@ -17,7 +17,7 @@ class Utilizatori extends Db{
         $rezultat = $this->getQuerry($query);
     }
     public function getUtilizatori(){
-        $query= "SELECT `utilizatori`.`id`, `utilizatori`.`nume`, `utilizatori`.`prenume`, `utilizatori`.`specializare`, `utilizatori`.`telefon`, `utilizatori`.`id_spital`, `spitale`.`nume`  AS `nume_spital`
+        $query= "SELECT `utilizatori`.`id`, `utilizatori`.`rol`,`utilizatori`.`nume`, `utilizatori`.`prenume`, `utilizatori`.`specializare`, `utilizatori`.`telefon`, `utilizatori`.`id_spital`, `spitale`.`nume`  AS `nume_spital`
           FROM `utilizatori`
           LEFT JOIN `spitale` ON `utilizatori`.`id_spital` = `spitale`.`id`
           WHERE 1";
@@ -40,10 +40,15 @@ class Utilizatori extends Db{
             `telefon` = '".$post["telefon"]."',
             `email` = '".$post["email"]."',
             `rol` = '".$post["rol"]."',
-            `parola` = '".$post["parola"]."',
             `id_spital` = '".$post["id_spital"]."'
          WHERE `id`='".$id."'";
          $rezultat = $this->getQuerry($query);
+    }
+    public function editUtilizatorParola($id, $post){
+        $query = "UPDATE `utilizatori` SET 
+            `parola` = '".$post["parola_noua"]."'
+            WHERE `id`='".$id."'";
+        $rezultat = $this->getQuerry($query);
     }
     public function deleteUtilizator($id){
         $query = "DELETE FROM `utilizatori` 

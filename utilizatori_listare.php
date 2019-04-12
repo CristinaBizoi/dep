@@ -29,6 +29,7 @@
                 <th scope="col">Prenume</th>
                 <th scope="col">Specializare</th>
                 <th scope="col">Telefon</th>
+                <th scope="col">Rol</th>
                 <th scope="col">Spital</th>
                 <th scope="col"></th>
                 </tr>
@@ -44,6 +45,14 @@
                     <td><?php echo $utilizator["prenume"]; ?></td>
                     <td><?php echo $utilizator["specializare"]; ?></td>
                     <td><?php echo $utilizator["telefon"]; ?></td>
+                    <td>
+                    <?php if($utilizator["rol"]==1){
+                      echo "Administrator";
+                      }elseif($utilizator["rol"]==2){
+                        echo "Medic";
+                      }
+                    ?>
+                    </td>
                     <td><?php echo $utilizator["nume_spital"]; ?></td>
                     <td>
                       <a href="utilizator_editare?id=<?php echo $utilizator["id"]; ?>" title="Editeaza utilizator"><i class="far fa-edit"></i></a>

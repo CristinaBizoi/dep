@@ -8,13 +8,27 @@
     require_once('./_inc/models/Spitale.php');
     $utilizatorObject = new Utilizatori();
     $spitaleObject = new Spitale();
-    if(isset($_POST) && !empty($_POST)){
+    if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changedetails"){{
         $utilizatorObject->editUtilizator($id, $_POST);
         header('Location:./utilizatori_listare');
         exit();
     }
     $spitale = $spitaleObject->getSpitale();
     $utilizator = $utilizatorObject->getUtilizator($id);
+    if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changepassword"){
+        $error = false;
+        if ($_POST["parola_noua"] != $_POST["parola_noua_re"]){
+            $error = true;
+        }
+        if($utilizator["parola"]!==md5($_POST["parola_veche"])){
+            $error = true;
+        }
+        if ($error == false){
+            $utilizatorObject->editUtilizatorParola($id, $_POST["parola_noua"]);
+            header('Location:./utilizatori_listare');
+            exit();
+        }
+    }
 include("./header.php");
 ?>
 
@@ -45,23 +59,6 @@ include("./header.php");
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="parola" placeholder="Introduceti parola">
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6">
-                    <div class="form-group">
-                            <label for="password_re">Password</label>
-                            <input type="password" class="form-control" id="password_re" name="parola_re" placeholder="Reintroduceti parola">
-                    </div>
-                </div>
-            </div>
-            
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -116,13 +113,41 @@ include("./header.php");
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="act" value="changedetails">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
         
+        <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                            <label for="old_password">Parola veche</label>
+                            <input type="password" class="form-control" id="old_password" name="parola_veche" placeholder="Introduceti parola">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                            <label for="password">Parola noua</label>
+                            <input type="password" class="form-control" id="password" name="parola_noua" placeholder="Introduceti parola">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="password_re">Reintroducere parola noua</label>
+                        <input type="password" class="form-control" id="password_re" name="parola_noua_re" placeholder="Reintroduceti parola">
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="act" value="changepassword">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     
     </div>
       <!-- /.container-fluid -->
-
  <?php 
   include("./footer.php");
  ?>

@@ -1,8 +1,24 @@
 <?php
+    if(isset($_GET["cauta_pacient"]) && strlen($_GET["cauta_pacient"])>0){
+      $termen = $_GET["cauta_pacient"];
+      $where = "`pacient`.`nume` LIKE '%".$termen."%'";
+      
+      /* cautare dupa un text
+      = trebuie sa fie identic
+      LIKE returneaza daca se potriveste intr-un camp
+      LIKE => https://www.w3schools.com/sql/sql_like.asp
+  
+      */
+  }else{
+      //Daca nu gasesc un termen de cautat in where ca fi 1, adica caut tot si $termen va fi gol ca sa nu primesc erori (Notice:)
+      $termen = "";
+      $where ="1";
+  }
   require_once('./_inc/models/Pacienti.php');
   $pacientiModel = new Pacienti();
-  
-  $pacienti= $pacientiModel->getPacienti();
+  $pacienti= $pacientiModel->getPacienti($where);
+
+
 //   var_dump($pacienti);
 //   exit()
   include("./header.php");
@@ -20,6 +36,22 @@
 
         <!-- Page Content -->
         <h1> Listare Pacienti</h1>
+
+        <div class="row">
+            <div class="col-md-12">
+            <form class="form-inline" action="./pacienti_listare" method="get">
+                <div class="form-group">
+                    <label for="name">Cauta</label>
+
+                    <input type="text" class="form-control" name="cauta_pacient" id="name" placeholder="Artiocul meu" value="<?php echo $termen; ?>">
+                </div>
+                <button type="submit" class="btn btn-default">Cauta</button>
+                </form>
+            </div>
+        </div>
+
+
+
         <hr>
         <table class="table table-hover">
             <thead>
