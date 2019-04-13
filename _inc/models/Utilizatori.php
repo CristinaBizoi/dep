@@ -33,9 +33,13 @@ class Utilizatori extends Db{
         return $utilizator;
     }
     public function loginUtilizator($email){
-        $query = "SELECT `utilizatori`.`email`,  `utilizatori`.`parola` FROM `utilizatori`
+        $query = "SELECT * FROM `utilizatori`
                 WHERE `utilizatori`.`email`='".$email."'";
+        // echo $query;
+        // echo "</br>";
         $rezultat = $this->getQuerry($query);
+
+        // var_dump($rezultat);
         $utilizator = $this->getRow($rezultat);
         return $utilizator;
     }

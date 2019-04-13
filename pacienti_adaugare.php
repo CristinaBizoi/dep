@@ -83,7 +83,8 @@
     
     </div>
       <!-- /.container-fluid -->
-
+<script>
+</script>
  <?php 
   include("./footer.php");
  ?>

@@ -17,6 +17,9 @@ class Db{
     }
     public function getQuerry($query){
         $result = $this->con->query($query);
+        if(!$result){
+            var_dump($this->con->error);exit();
+        }
         return $result;
     }
     public function getArray($rezultat){

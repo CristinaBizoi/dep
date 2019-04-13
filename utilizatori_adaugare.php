@@ -120,6 +120,18 @@ include("./header.php");
     
     </div>
       <!-- /.container-fluid -->
+<script>
+$('#rol').on('change',function(e){ //vedem cand schimba valoarea din select
+    console.log(this); // elementul din DOM (selectul)
+    console.log($(this).val()); //Valoarea elementului 
+    var rol= $(this).val();
+    if(rol==2){
+        //daca e medic vrem sa afisam campul pentru specializare
+    }
+
+})
+
+</script>
 
  <?php 
   include("./footer.php");
