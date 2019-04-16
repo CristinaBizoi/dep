@@ -6,13 +6,24 @@
     }
     require_once('./_inc/models/Pacienti.php');
     $pacientObject = new Pacienti();
-    if(isset($_POST) && !empty($_POST)){
+    if(isset($_POST) && !empty($_POST)&&$_POST["act"]=="changedetails"){
         $pacientObject->editPacient($id, $_POST);
         header('Location:./pacienti_listare');
         exit();
     }
-
     $pacient = $pacientObject->getPacient($id);
+    if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changepin"){
+        $error = false;
+        if ($_POST["pin"] != $_POST["pin_re"]){
+            $error = true;
+        }
+        if ($error == false){
+            $pacientObject->editPacientPin($id, $_POST["pin"]);
+            header('Location:./pacienti_listare');
+            exit();
+        }
+    }
+
 
     // var_dump($pacient);
   include("./header.php");
@@ -52,13 +63,6 @@
                         <input type="text" name="cnp" class="form-control" id="cnp" placeholder="CNP" value="<?php echo $pacient["cnp"]; ?>">
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label for="pin">PIN</label>
-                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" value="<?php echo $pacient["pin"]; ?>">
-                    </div>
-                </div>
-               
             </div>
             <div class="row">
                 <div class="col-6">
@@ -93,8 +97,26 @@
                     <label class="custom-control-label" for="feminin">Feminin</label>
                 </div>
             </div>
-        
+            <input type="hidden" name="act" value="changedetails">
             <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <form method="POST" action="./pacient_editare?id=<?php echo $pacient["id"]; ?>">
+        <div class="row">
+            <div class="col-6">
+                    <div class="form-group">
+                        <label for="pin">PIN</label>
+                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" value="<?php echo $pacient["pin"]; ?>">
+                    </div>
+            </div>
+            <div class="col-6">
+                    <div class="form-group">
+                        <label for="pin">Reintroducere PIN</label>
+                        <input type="text" name="pin_re" class="form-control" id="pin" placeholder="Rentroduceti PIN">
+                    </div>
+            </div>
+        </div>
+        <input type="hidden" name="act" value="changepin">
+        <button type="submit" class="btn btn-primary">Submit</button> 
         </form>
 
 </div>

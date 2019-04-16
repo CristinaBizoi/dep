@@ -46,13 +46,19 @@ class Pacienti extends Db{
         `nume` ='".$post['nume_pacient']."',
             `prenume`='".$post['prenume_pacient']."',
             `cnp` = '".$post["cnp"]."',
-            `pin` = '".$post["pin"]."',
+            `pin` = '".md5($post["pin"])."',
             `telefon` = '".$post["telefon"]."',
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
             `sex` = '".$post["sex"]."'
          WHERE `id`='".$id."'";
          $rezultat = $this->getQuerry($query);
+    }
+    public function editPacientPin($id, $post){
+        $query = "UPDATE `pacienti` SET 
+            `pin` = '".md5($post["pin"])."'
+            WHERE `id`='".$id."'";
+        $rezultat = $this->getQuerry($query);
     }
     public function deletePacient($id){
         $query = "DELETE FROM `pacienti` 

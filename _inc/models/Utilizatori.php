@@ -57,7 +57,7 @@ class Utilizatori extends Db{
     }
     public function editUtilizatorParola($id, $post){
         $query = "UPDATE `utilizatori` SET 
-            `parola` = '".$post["parola_noua"]."'
+            `parola` = '".md5($post["parola_noua"])."'
             WHERE `id`='".$id."'";
         $rezultat = $this->getQuerry($query);
     }
