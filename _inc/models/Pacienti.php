@@ -8,6 +8,7 @@ class Pacienti extends Db{
             `nume` ='".$post['nume_pacient']."',
             `prenume`='".$post['prenume_pacient']."',
             `cnp` = '".$post["cnp"]."',
+            `pin` = '".md5($post["pin"])."',
             `telefon` = '".$post["telefon"]."',
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
@@ -29,11 +30,23 @@ class Pacienti extends Db{
         $pacient = $this->getRow($rezultat);
         return $pacient;
     }
+    public function loginPacient($cnp){
+        $query = "SELECT * FROM `pacienti`
+                WHERE `pacienti`.`cnp`='".$cnp."'";
+        // echo $query;
+        // echo "</br>";
+        $rezultat = $this->getQuerry($query);
+
+        // var_dump($rezultat);
+        $pacient = $this->getRow($rezultat);
+        return $pacient;
+    }
     public function editPacient($id, $post){
         $query = "UPDATE `pacienti` SET 
         `nume` ='".$post['nume_pacient']."',
             `prenume`='".$post['prenume_pacient']."',
             `cnp` = '".$post["cnp"]."',
+            `pin` = '".$post["pin"]."',
             `telefon` = '".$post["telefon"]."',
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',

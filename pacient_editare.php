@@ -54,16 +54,23 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label for="telefon">Telefon</label>
-                        <input type="text" name="telefon" class="form-control" id="telefon" placeholder="Telefon" value="<?php echo $pacient["telefon"]; ?>">
+                        <label for="pin">PIN</label>
+                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" value="<?php echo $pacient["pin"]; ?>">
                     </div>
                 </div>
+               
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="<?php echo $pacient["email"]; ?>">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="telefon">Telefon</label>
+                        <input type="text" name="telefon" class="form-control" id="telefon" placeholder="Telefon" value="<?php echo $pacient["telefon"]; ?>">
                     </div>
                 </div>
             </div>

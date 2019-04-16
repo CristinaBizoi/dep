@@ -76,7 +76,7 @@ include("./header.php");
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="specializare">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
@@ -126,7 +126,9 @@ $('#rol').on('change',function(e){ //vedem cand schimba valoarea din select
     console.log($(this).val()); //Valoarea elementului 
     var rol= $(this).val();
     if(rol==2){
-        //daca e medic vrem sa afisam campul pentru specializare
+        document.getElementById('specializare').style.display ='block';
+    }else{
+        document.getElementById('specializare').style.display='none';
     }
 
 })
