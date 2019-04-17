@@ -18,7 +18,8 @@ if(isset($_POST["act"]) && $_POST["act"]=="login"){
         "rol" => $utlizator["rol"],
         "nume" => $utlizator["nume"],
         "prenume" => $utlizator["prenume"],
-        "user_id" => $utlizator["id"]
+        "user_id" => $utlizator["id"],
+        "id_spital" => $utlizator["id_spital"]
     );
        echo "User logat";
   }else{

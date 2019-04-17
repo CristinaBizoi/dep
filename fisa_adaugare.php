@@ -1,4 +1,14 @@
 <?php
+//verific daca utilizatorul este logat, daca este user si daca este medic
+
+if(isset($_SESSION["logged_in"]) && $_SESSION["type"]=="user" && $_SESSION["type"] == 2){
+    $userID = $_SESSION["user_id"];
+    $spital = $_SESSION["id_spital"];
+}else{
+    header('Location: ./dashboard');
+    exit();
+}
+
 //id-ul pacientului
 if(isset($_GET["id"]) && $_GET["id"]>0){
     $id = $_GET["id"];
@@ -20,8 +30,8 @@ if(isset($_POST) && !empty($_POST)){
         "observatii" => $_POST["observatii"],
         "tip_fisa" => $_POST["tip_fisa"],
         "id_pacient" => $id,
-        "id_spital" => 1,
-        "id_utilizator" => 1
+        "id_spital" => $spital,
+        "id_utilizator" => $userID
     ];//TODO: de adaugat id-ul utilizatorukui si spitalul
     $fisaId = $fiseMedicaleModel->addFisa($data); //il folosim ca sa adaugam diagnostice si tratamente 
 
