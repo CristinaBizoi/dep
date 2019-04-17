@@ -3,7 +3,16 @@
     if(isset($_GET["id"]) && $_GET["id"]>0){
         $id = $_GET["id"];
     }else{
+        header('Location:./pacienti_listare?mesaj='.urlencode('Utilizatorul nu exista'));
         exit();
+    }
+
+    //in cazul in care este logat ca pacient verificam sa fie ale lui
+    if($_SESSION["logged_in"] && $_SESSION["type"]='pacient'){
+        if($_SESSION["user_id"]!=$id){
+            header('Location:./dashboard');
+            exit();
+        }
     }
     // incarcam fisierele
     require_once('./_inc/models/Pacienti.php');
@@ -28,7 +37,6 @@
         '3'=>'Consult',
     );
 
-    //TODO: verificari daca nu exista pacientul
     include("./header.php");
 ?>
 

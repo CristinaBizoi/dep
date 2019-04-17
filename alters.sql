@@ -7,3 +7,7 @@ ALTER TABLE `fise_medicale` CHANGE `id_spital` `id_spital` INT(255) NULL DEFAULT
 ALTER TABLE `fise_medicale` CHANGE `id_utilizator` `id_utilizator` INT(255) NULL DEFAULT NULL;
 ALTER TABLE `fise_medicale` ADD INDEX(`id_utilizator`);
 ALTER TABLE `fise_medicale` DROP FOREIGN KEY `medic`; ALTER TABLE `fise_medicale` ADD CONSTRAINT `medic` FOREIGN KEY (`id_utilizator`) REFERENCES `utilizatori`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+
+ALTER TABLE `pacienti` ADD `pin` VARCHAR(32) NOT NULL AFTER `email`;
+

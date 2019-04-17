@@ -1,7 +1,7 @@
 <?php
 //verific daca utilizatorul este logat, daca este user si daca este medic
-
-if(isset($_SESSION["logged_in"]) && $_SESSION["type"]=="user" && $_SESSION["type"] == 2){
+// var_dump($_SESSION);exit();
+if(isset($_SESSION["logged_in"]) && $_SESSION["type"]=="user" && $_SESSION["rol"] == 2){
     $userID = $_SESSION["user_id"];
     $spital = $_SESSION["id_spital"];
 }else{

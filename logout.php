@@ -1,4 +1,5 @@
 <?php
 $_SESSION = array();
-echo "pacientul s-a delogat";
+header("Location:./login_pacient");
+        exit();
 ?>

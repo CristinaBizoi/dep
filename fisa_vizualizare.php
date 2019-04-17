@@ -17,7 +17,13 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
     $diagnosticModel = new Diagnostic();
     $fisa = $fiseMedicaleModel->getFisa($id);
 
-
+    //in cazul in care este logat ca pacient verificam sa fie ale lui
+    if($_SESSION["logged_in"] && $_SESSION["type"]='pacient'){
+        if($_SESSION["user_id"]!=$fisa["id_pacient"]){
+            header('Location:./dashboard');
+            exit();
+        }
+    }
     //verificam daca am gasit date despre pacient (daca exista)
     if(empty($fisa)){
         header('Location:./pacienti_listare?mesaj='.urlencode('Fisa nu exista'));

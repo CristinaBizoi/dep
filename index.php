@@ -8,19 +8,20 @@ if(isset($_POST["act"]) && $_POST["act"]=="login"){
     require_once('./_inc/models/Utilizatori.php');
     $utilizatoriModel = new Utilizatori();
     $utilizator= $utilizatoriModel->loginUtilizator($_POST["email"]);
-    // var_dump($utilizator);
-    // exit();
+    
     if($utilizator["parola"]===md5($_POST["parola"])){
       $_SESSION = array(
         "logged_in" => true, 
         'type' => 'user',
         "email" => $_POST["email"],
-        "rol" => $utlizator["rol"],
-        "nume" => $utlizator["nume"],
-        "prenume" => $utlizator["prenume"],
-        "user_id" => $utlizator["id"],
-        "id_spital" => $utlizator["id_spital"]
+        "rol" => $utilizator["rol"],
+        "nume" => $utilizator["nume"],
+        "prenume" => $utilizator["prenume"],
+        "user_id" => $utilizator["id"],
+        "id_spital" => $utilizator["id_spital"]
     );
+    // var_dump($utilizator);
+    // exit();
        echo "User logat";
   }else{
     echo "Parola nu se potriveste";
@@ -32,7 +33,7 @@ if(isset($_POST["act_pacient"]) && $_POST["act_pacient"]=="login"){
     $pacient = $pacientiModel ->loginPacient($_POST["cnp"]);
     if($pacient["pin"]===md5($_POST["pin"])){
       $_SESSION = array(
-        "logged_in_pacient" => true, 
+        "logged_in" => true, 
         'type' => 'pacient',
         "cnp" => $_POST["cnp"],
         "nume" => $pacient["nume"],
@@ -44,15 +45,23 @@ if(isset($_POST["act_pacient"]) && $_POST["act_pacient"]=="login"){
     echo "Parola nu se potriveste";
  }
 }
-$db_object = new Db();
 
+//vedem ce pagina trebuie sa incarcam
 if(isset($_GET["page"])){
   $page = $_GET["page"];
 }else{
   $page ="";
 }
 
+//verificam daca este logat
+// if(!isset($_SESSION["logged_in"])){
+//   if($page!='login_pacient' && $page!='login'){
+//     header("Location:./login_pacient");
+//     exit();    
+//   }
+// }
 
+$db_object = new Db();
 if(is_file("./".$page.".php")){
   include("./".$page.".php");
 }else{

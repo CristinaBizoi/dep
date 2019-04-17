@@ -9,14 +9,20 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Blank Page</li>
         </ol>
 
         <!-- Page Content -->
-        <h1>Blank Page</h1>
+        <h1>Bun venit</h1>
         <hr>
-        <p>This is a great starting point for new custom pages.</p>
-
+        <p>Esti logat ca:.</p>
+        <?php
+        if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]){
+          echo $_SESSION["type"];
+        }
+        ?>
+<pre>
+<?php print_r($_SESSION); ?>
+</pre>
       </div>
       <!-- /.container-fluid -->
 
