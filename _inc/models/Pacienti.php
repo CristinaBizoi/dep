@@ -3,16 +3,34 @@ class Pacienti extends Db{
     public function __construct(){
         parent::__construct();
     }
-    public function addPacient($post){
+    public function addPacientNoAccord($post){
         $query= "INSERT INTO `pacienti` SET 
             `nume` ='".$post['nume_pacient']."',
             `prenume`='".$post['prenume_pacient']."',
             `cnp` = '".$post["cnp"]."',
             `pin` = '".md5($post["pin"])."',
+            `grupa_sange` = '".$post["grupa_sange"]."',
+            `rh` = '".$post["rh"]."',
             `telefon` = '".$post["telefon"]."',
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
             `sex` = '".$post["sex"]."'
+              ";
+        $rezultat = $this->getQuerry($query);
+    }
+    public function addPacientAccord($post){
+        $query= "INSERT INTO `pacienti` SET 
+            `nume` ='".$post['nume_pacient']."',
+            `prenume`='".$post['prenume_pacient']."',
+            `cnp` = '".$post["cnp"]."',
+            `pin` = '".md5($post["pin"])."',
+            `grupa_sange` = '".$post["grupa_sange"]."',
+            `rh` = '".$post["rh"]."',
+            `telefon` = '".$post["telefon"]."',
+            `email` = '".$post["email"]."',
+            `data_nastere` = '".$post["data_nastere"]."',
+            `sex` = '".$post["sex"]."',
+            `acord_fisa` = '".$post["acord_fisa"]."'
               ";
         $rezultat = $this->getQuerry($query);
     }
@@ -48,15 +66,17 @@ class Pacienti extends Db{
             `cnp` = '".$post["cnp"]."',
             `pin` = '".md5($post["pin"])."',
             `telefon` = '".$post["telefon"]."',
+            `grupa_sange` = '".$post["grupa_sange"]."',
+            `rh` = '".$post["rh"]."',
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
             `sex` = '".$post["sex"]."'
          WHERE `id`='".$id."'";
          $rezultat = $this->getQuerry($query);
     }
-    public function editPacientPin($id, $post){
+    public function editPacientPin($id, $pin){
         $query = "UPDATE `pacienti` SET 
-            `pin` = '".md5($post["pin"])."'
+            `pin` = '".md5($pin)."'
             WHERE `id`='".$id."'";
         $rezultat = $this->getQuerry($query);
     }

@@ -67,6 +67,23 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
+                        <label for="grupa_sange">Grupa sanguina</label>
+                        <input type="text" name="grupa_sange" class="form-control form-field" id="grupa_sange" value="<?php echo $pacient["grupa_sange"]; ?>">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="rh">Adaugare Rh</label>
+                        <select class="form-control" id="rh" name="rh" >
+                            <option value="1" <?php if($pacient["rh"]==1){ echo "selected";}?>>+</option>
+                            <option value="2" <?php if($pacient["rh"]==2){ echo "selected";}?>>-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
                         <label for="email">E-mail</label>
                         <input type="email" name="email" class="form-control" id="email" placeholder="E-mail" value="<?php echo $pacient["email"]; ?>">
                     </div>
@@ -95,6 +112,28 @@
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" name="sex" id="feminin" value="2"  class="custom-control-input" <?php if($pacient["sex"]==2){ echo "checked"; } ?>>
                     <label class="custom-control-label" for="feminin">Feminin</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">Sunt de acord cu donarea de organe</div>
+                <div class="col-sm-9">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck1">
+                    <label class="form-check-label" for="gridCheck1">
+                    Da, sunt de acord.
+                    </label>
+                </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">Sunt de acord cu fisa medicala</div>
+                <div class="col-sm-9">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="acord_fisa" id="acord_fisa">
+                    <label class="form-check-label" for="acord_fisa">
+                    Da, sunt de acord.
+                    </label>
+                </div>
                 </div>
             </div>
             <input type="hidden" name="act" value="changedetails">

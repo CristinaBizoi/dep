@@ -2,7 +2,11 @@
     if(isset($_POST) && !empty($_POST)){
         require_once("./_inc/models/Pacienti.php");
         $pacient = new Pacienti();
-        $pacient->addPacient($_POST);
+        if($_POST['acord_fisa'] == '1'){
+            $pacient->addPacientAccord($_POST);
+        }else{
+            $pacient->addPacientNoAccord($_POST);
+        }
         header('Location:./pacienti_listare');
         exit();
     }
@@ -21,7 +25,7 @@
         <!-- Page Content -->
         <h1>Pacienti adaugare</h1>
         <hr>
-        <form method="POST" action="./pacienti_adaugare">
+        <form method="POST" action="./pacienti_adaugare" id="myForm">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -47,6 +51,23 @@
                     <div class="form-group">
                         <label for="pin">Pin</label>
                         <input type="text" name="pin" class="form-control form-field" id="pin" placeholder="Introduceti PIN">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="grupa_sange">Grupa sanguina</label>
+                        <input type="text" name="grupa_sange" class="form-control form-field" id="grupa_sange" placeholder="Grupa sanguina">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="rh">Adaugare Rh</label>
+                        <select class="form-control" id="rh" name="rh">
+                            <option value="1">+</option>
+                            <option value="2">-</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -83,17 +104,27 @@
                     <label class="custom-control-label form-field" for="feminin">Feminin</label>
                 </div>
             </div>
-        
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="acord_fisa" value="1" id="acord_fisa">
+                    <label class="form-check-label" for="acord_fisa">
+                        Sunt de acord cu fisa medicala
+                    </label>
+                </div>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     
     </div>
       <!-- /.container-fluid -->
 <script>
-    $('#idForm').on('submit',function(e){
-        e.preventDefault();
-    
-    }
+   $('#myForm').on('submit',function (e){
+            e.preventDefault();
+            console.log('Incearca sa trimita');
+            var isValid = true;
+            var valoareEmail = $('#email').val();
+            console.log(valoareEmail);
+        });
 </script>
  <?php 
   include("./footer.php");
