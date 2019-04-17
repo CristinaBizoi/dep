@@ -28,6 +28,10 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
     $diagnostice = $diagnosticModel->getDiagnosticeByFisa($id);
     $tratamente = $tratamentModel->getTratamenteByFisa($id);
 
+    $sexe = array(
+        '1'=>"M",
+        '2'=>"F"
+    );
     include("./header.php");
 ?>
 
@@ -51,7 +55,7 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
         </div>
         <div class="col-6">
             <p><b>Data:</b> <?php echo date("d.m.Y",strtotime($fisa["data_adaugare"])); ?></p>
-            <p><b>Spital:</b> <?php echo $fisa["id_spital"]; ?></p>
+            <p><b>Spital:</b> <?php echo $fisa["nume_spital"]; ?></p>
         </div>
     </div>
 
@@ -62,7 +66,7 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
             <p><b>Nume:</b> <?php echo $fisa["nume_pacient"]; ?></p>
             <p><b>Prenume:</b> <?php echo $fisa["prenume_pacient"]; ?></p>
             <p><b>CNP:</b> <?php echo $fisa["cnp"]; ?></p>
-            <p><b>Sex:</b> <?php echo $fisa["sex"]; ?></p>
+            <p><b>Sex:</b> <?php echo $sexe[$fisa["sex"]]; ?></p>
         </div>
         <div class="col-6">
             <p><b>Data nasterii:</b> <?php echo date("d.m.Y",strtotime($fisa["data_nastere"])); ?></p>
@@ -109,7 +113,10 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
                                 <input type="text" name="nume_diagnostic[]" class="form-control col-9" disabled="disabled"  placeholder="Nume diagnostic" value="<?php echo $diagnostic["denumire"]; ?>">
                         
                             </div>
-                    <?php }  } ?>
+                    <?php }  
+                }else{ ?>
+                    <p>Nu au fost adaugate diagnostice</p>
+                 <?php } ?>
                 </div>
                 <div class="form-group">
                     <label >Tratamente</label>
@@ -120,8 +127,10 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
                                 <input type="text" name="cod_tratament[]" class="form-control col-3 mr-3" disabled="disabled"  placeholder="Cod tratament" value="<?php echo $tratament["cod"]; ?>">
                                 <input type="text" name="nume_tratament[]" class="form-control col-9" disabled="disabled"  placeholder="Nume tratament" value="<?php echo $tratament["denumire"]; ?>">
                             </div>
-                    <?php } } ?>
-                    
+                    <?php }
+                 }else{ ?>
+                    <p>Nu au fost adaugate tratamente</p>
+                 <?php } ?>
                 </div>
 
         </div>

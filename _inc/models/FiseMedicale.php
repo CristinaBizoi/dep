@@ -16,7 +16,10 @@ class FiseMedicale extends Db{
         return $this->getLastId();
     }
     public function getPacientFise($id){
-        $query= "SELECT * FROM `fise_medicale` WHERE `id_pacient`='".$id."' ORDER BY `data_adaugare` DESC";
+        $query= "SELECT fm.`id`,fm.`data_adaugare`, fm.`observatii`, fm.`tip_fisa`, fm.`id_spital`, s.`nume`  AS `nume_spital`
+         FROM `fise_medicale` as fm
+        LEFT JOIN `spitale` as s ON (`fm`.`id_spital` = s.`id`)
+        WHERE `id_pacient`='".$id."' ORDER BY `data_adaugare` DESC";
         $rezultat = $this->getQuerry($query);
         return  $this->getArray($rezultat);       
     }
@@ -25,12 +28,13 @@ class FiseMedicale extends Db{
         if(empty((int)$id) ){
             return array();
         }
-        $query = " SELECT fm.`data_adaugare`, fm.`observatii`, fm.`tip_fisa`, fm.`id_spital`,
+        $query = " SELECT fm.`data_adaugare`, fm.`observatii`, fm.`tip_fisa`, fm.`id_spital`, s.`nume`  AS `nume_spital`,
             p.`nume` as nume_pacient, p.`prenume` as prenume_pacient, p.`cnp`, p.`data_nastere`, p.`sex`, p.`telefon`, p.`email`,
             u.`id` as id_user, u.`nume` as nume_utilizator, u.`prenume` as prenume_utilizator
         FROM `fise_medicale` as fm
         LEFT JOIN `pacienti` as p ON (fm.`id_pacient` = p.`id`)
         LEFT JOIN `utilizatori` as u ON (fm.`id_utilizator` = u.`id`)
+        LEFT JOIN `spitale` as s ON `fm`.`id_spital` = s.`id`
         WHERE fm.`id` = '".$id."'
         ";
 

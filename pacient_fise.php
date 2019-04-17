@@ -22,6 +22,12 @@
     //selectam fisele medicale pentru pacientul selectat
     $fise = $fiseMedicaleModel->getPacientFise($id);
 
+    $tipFise=array(
+        '1'=>'Internare',
+        '2'=>'Externare',
+        '3'=>'Consult',
+    );
+
     //TODO: verificari daca nu exista pacientul
     include("./header.php");
 ?>
@@ -60,6 +66,7 @@
                 <tr>
                 <th scope="col">#</th>
                 <th scope="col">Tip fisa</th>
+                <th scope="col">Spital</th>
                 <th scope="col">Data</th>
                 <th scope="col"></th>
                 </tr>
@@ -70,7 +77,8 @@
                 ?>
                 <tr>
                     <td><?php echo $i+1; ?></td>
-                    <td><?php echo $fisa["tip_fisa"]; ?></td>
+                    <td><?php echo $tipFise[$fisa["tip_fisa"]]; ?></td>
+                    <td><?php echo $fisa["nume_spital"]; ?></td>
                     <td><?php echo date("d.m.Y H:i:s",strtotime($fisa["data_adaugare"])); ?></td>
                     <td>
                       <a href="fisa_vizualizare?id=<?php echo $fisa["id"]; ?>" title="Vezi fisa medicala"><i class="far fa-eye"></i></a>
