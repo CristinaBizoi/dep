@@ -8,7 +8,7 @@
     }
 
     //in cazul in care este logat ca pacient verificam sa fie ale lui
-    if($_SESSION["logged_in"] && $_SESSION["type"]='pacient'){
+    if($_SESSION["logged_in"] && $_SESSION["type"]=='pacient'){
         if($_SESSION["user_id"]!=$id){
             header('Location:./dashboard');
             exit();

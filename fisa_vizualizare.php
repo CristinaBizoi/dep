@@ -18,7 +18,7 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
     $fisa = $fiseMedicaleModel->getFisa($id);
 
     //in cazul in care este logat ca pacient verificam sa fie ale lui
-    if($_SESSION["logged_in"] && $_SESSION["type"]='pacient'){
+    if($_SESSION["logged_in"] && $_SESSION["type"]=='pacient'){
         if($_SESSION["user_id"]!=$fisa["id_pacient"]){
             header('Location:./dashboard');
             exit();

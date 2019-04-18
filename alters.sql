@@ -11,3 +11,5 @@ ALTER TABLE `fise_medicale` DROP FOREIGN KEY `medic`; ALTER TABLE `fise_medicale
 
 ALTER TABLE `pacienti` ADD `pin` VARCHAR(32) NOT NULL AFTER `email`;
 
+ALTER TABLE `pacienti` ADD `grupa_sange` VARCHAR(10) NOT NULL AFTER `parola`, ADD `rh` TINYINT(1) NOT NULL AFTER `grupa_sange`, ADD `acord_fisa` TINYINT(1) NOT NULL AFTER `rh`, ADD `donator` TINYINT(1) NOT NULL AFTER `acord_fisa`;
+
