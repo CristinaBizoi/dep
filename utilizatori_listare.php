@@ -19,7 +19,11 @@
         </ol>
 
         <!-- Page Content -->
+      
+        <div class="d-flex">
         <h1> Listare Utilizatori</h1>
+        <a href="./utilizatori_adaugare" class=" ml-auto" > <i class="fa fa-plus"></i> Adaugare</a>
+        </div>
         <hr>
         <table class="table table-hover">
             <thead>

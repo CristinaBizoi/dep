@@ -37,7 +37,11 @@
         </ol>
 
         <!-- Page Content -->
+        <div class="d-flex">
         <h1> Listare Pacienti</h1>
+        <a href="./pacienti_adaugare" class=" ml-auto" > <i class="fa fa-plus"></i> Adaugare</a>
+        </div>
+        
 
         <div class="row">
             <div class="col-md-12">
