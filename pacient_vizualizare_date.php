@@ -37,7 +37,7 @@
   <li class="breadcrumb-item">
     <a href="index.html">Dashboard</a>
   </li>
-  <li class="breadcrumb-item active">Blank Page</li>
+  <li class="breadcrumb-item active">Date personale</li>
 </ol>
 
 <!-- Page Content -->
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <input type="hidden" name="act" value="changedetails">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
         </form>
     </div>
 </div>

@@ -33,7 +33,7 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+          <li class="breadcrumb-item active">Lista pacienti</li>
         </ol>
 
         <!-- Page Content -->
@@ -47,9 +47,9 @@
             <div class="col-md-12">
             <form class="form-inline" action="./pacienti_listare" method="get">
                 <div class="form-group">
-                    <label for="name">Cauta Pacient:</label> <br>
+                    <label for="name">Cauta Pacient: </label> <br>
 
-                    <input type="text" class="form-control" name="cauta_pacient" id="name" placeholder="Cauta pacient" value="<?php echo $termen; ?>">
+                    <input type="text" class="form-control ml-2" name="cauta_pacient" id="name" placeholder="Cauta pacient" value="<?php echo $termen; ?>">
                 </div>
                 <button type="submit" class="btn btn-light">Cauta</button>
                 </form>

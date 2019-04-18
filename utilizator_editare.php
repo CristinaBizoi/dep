@@ -38,7 +38,7 @@
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+          <li class="breadcrumb-item active">Editare utilizator</li>
         </ol>
 
         <!-- Page Content -->
@@ -125,17 +125,17 @@
                 </div>
             </div>
             <input type="hidden" name="act" value="changedetails">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
 
-        <h3 class="my-4">Editrare paroala</h3>
+        <h3 class="my-4 mt-2">Editrare paroala</h3>
 
         <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>" id="formular_utilizatori_ediatare_parola">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                             <label for="old_password">Parola veche</label>
-                            <input type="password" class="form-control necesita_verificare" id="old_password" name="parola_veche" placeholder="Introduceti parola">
+                            <input type="password" class="form-control necesita_verificare" id="old_password" name="parola_veche" placeholder="Introduceti parola veche">
                             <div class="alert alert-danger" role="alert" style="display:none" id="eroare_old_password">
                                 Nu ati introdus parola veche
                             </div>
@@ -146,7 +146,7 @@
                 <div class="col-6">
                     <div class="form-group">
                             <label for="password">Parola noua</label>
-                            <input type="password" class="form-control necesita_verificare" id="password" name="parola_noua" placeholder="Introduceti parola">
+                            <input type="password" class="form-control necesita_verificare" id="password" name="parola_noua" placeholder="Introduceti noua parola">
                             <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password">
                                 Nu ati introdus parola
                             </div>
@@ -157,7 +157,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="password_re">Reintroducere parola noua</label>
-                        <input type="password" class="form-control necesita_verificare" id="password_re" name="parola_noua_re" placeholder="Reintroduceti parola">
+                        <input type="password" class="form-control necesita_verificare" id="password_re" name="parola_noua_re" placeholder="Reintroduceti noua parola">
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password_re">
                                 Nu ati introdus parola
                             </div>

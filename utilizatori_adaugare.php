@@ -27,7 +27,7 @@ include("./header.php");
           <li class="breadcrumb-item">
             <a href="index.html">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+          <li class="breadcrumb-item active">Adauga utilizator</li>
         </ol>
 
         <!-- Page Content -->
@@ -51,7 +51,7 @@ include("./header.php");
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                            <label for="password">Password</label>
+                            <label for="password">Parola</label>
                             <input type="password" class="form-control verificare" id="password" name="parola" placeholder="Introduceti parola">
                             <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password">
                                 Nu ati introdus parola
@@ -62,7 +62,7 @@ include("./header.php");
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                            <label for="password_re">Password</label>
+                            <label for="password_re">Reintroducere Parola</label>
                             <input type="password" class="form-control verificare" id="password_re" name="parola_re" placeholder="Reintroduceti parola">
                             <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password_re">
                                 Nu ati introdus parola
@@ -133,7 +133,7 @@ include("./header.php");
                 </div>
             </div>
         
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
         </form>
     
     </div>
