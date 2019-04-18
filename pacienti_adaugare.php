@@ -135,8 +135,8 @@
             $(".alert").css("display","none");
            //selectez toate capurile care au clasa verificare
            var campuriVerificabile = $('.verificare');
-           var valoareCnp = $('#input_3');
-           var valoarePin = $('#input_4');
+           var valoareCnp = $('#input_3').val();
+           var valoarePin = $('#input_4').val();
            console.log(campuriVerificabile);
 
            //parcurg campurile rezultate https://stackoverflow.com/questions/4735342/jquery-to-loop-through-elements-with-the-same-class
@@ -154,14 +154,14 @@
              }
            })
            if(valoareCnp.length<10){
-                $("#eroare_input3").css('display','block');
+                $("#eroare_input_3").css('display','block');
                 var mesaj = "Introduceti un cnp valid";
                 $("#eroare_input_3").text(mesaj);
                 // $('#eroare_'+idElem).css('display','block');
                 isValid = false;
             }
            if(valoarePin.length != 4){
-                $("#eroare_input4").css('display','block');
+                $("#eroare_input_4").css('display','block');
                 var mesaj = "Trebuie sa contina 4 caractere";
                 $("#eroare_input_4").text(mesaj);
                 isValid = false;

@@ -158,8 +158,8 @@
         <div class="row">
             <div class="col-6">
                     <div class="form-group">
-                        <label for="pin">PIN</label>
-                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" value="<?php echo $pacient["pin"]; ?>">
+                        <label for="pin">PIN nou</label>
+                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" >
                     </div>
             </div>
             <div class="col-6">
@@ -178,8 +178,9 @@
 $('#myForm').on('submit',function (e){
     e.preventDefault();
     var isValid = true;
+    $(".alert").css("display","none");
     var campuriVerificabile = $('.verificare');
-    var valoareCnp = $('#input_3');
+    var valoareCnp = $('#input_3').val();
     // var valoarePin = $('#input_4');
     campuriVerificabile.each(function(i, field){
         console.log(field);

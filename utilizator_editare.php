@@ -44,7 +44,7 @@ include("./header.php");
         <!-- Page Content -->
         <h1>Utilizator editare</h1>
         <hr>
-        <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>">
+        <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>" id="formular_utilizatori_editare">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -63,18 +63,24 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="rol"> Selecteaza rol </label>
-                        <select class="form-control" id="rol" name="rol">
+                        <select class="form-control verificare" id="rol" name="rol">
                             <option value="1" <?php if($utilizator["rol"]==1){ echo "selected";}?>>Administrator</option>
                             <option value="2" <?php if($utilizator["rol"]==2){ echo "selected";}?>>Medic</option>
                         </select>
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
+                            Alegeti un rol
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" id="specializare_camp">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
-                        <input type="text" name="specializare" class="form-control" id="specializare"  value="<?php echo $utilizator["specializare"]; ?>">
+                        <input type="text" name="specializare" class="form-control verificare" id="specializare"  value="<?php echo $utilizator["specializare"]; ?>">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_specializare">
+                            Nu ati introdus specializarea
+                        </div>
                     </div>
                 </div>
             </div>
@@ -82,7 +88,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" id="email"  value="<?php echo $utilizator["email"]; ?>">
+                        <input type="email" name="email" class="form-control verificare" id="email"  value="<?php echo $utilizator["email"]; ?>">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_email">
+                            Nu ati introdus emailul
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
@@ -117,12 +126,15 @@ include("./header.php");
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
 
-        <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>">
+        <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>" id="formular_utilizatori_ediatare_parola">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                             <label for="old_password">Parola veche</label>
-                            <input type="password" class="form-control" id="old_password" name="parola_veche" placeholder="Introduceti parola">
+                            <input type="password" class="form-control necesita_verificare" id="old_password" name="parola_veche" placeholder="Introduceti parola">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_old_password">
+                                Nu ati introdus parola veche
+                            </div>
                     </div>
                 </div>
             </div>
@@ -130,7 +142,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                             <label for="password">Parola noua</label>
-                            <input type="password" class="form-control" id="password" name="parola_noua" placeholder="Introduceti parola">
+                            <input type="password" class="form-control necesita_verificare" id="password" name="parola_noua" placeholder="Introduceti parola">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password">
+                                Nu ati introdus parola
+                            </div>
                     </div>
                 </div>
             </div>
@@ -138,7 +153,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="password_re">Reintroducere parola noua</label>
-                        <input type="password" class="form-control" id="password_re" name="parola_noua_re" placeholder="Reintroduceti parola">
+                        <input type="password" class="form-control necesita_verificare" id="password_re" name="parola_noua_re" placeholder="Reintroduceti parola">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password_re">
+                                Nu ati introdus parola
+                            </div>
                     </div>
                 </div>
             </div>
@@ -147,6 +165,79 @@ include("./header.php");
         </form>
     
     </div>
+<script>
+    $('#rol').on('change',function(e){ //vedem cand schimba valoarea din select
+        console.log(this); // elementul din DOM (selectul)
+        console.log($(this).val()); //Valoarea elementului 
+        var rol= $(this).val();
+        if(rol==2){
+            document.getElementById('specializare_camp').style.display ='block';
+        }else{
+            document.getElementById('specializare_camp').style.display='none';
+        }
+
+    })
+    $('#formular_utilizatori_editare').on('submit',function (e){
+            e.preventDefault();
+            var isValid = true;
+            $(".alert").css("display","none");
+            //selectez toate capurile care au clasa verificare
+            var campuriVerificabile = $('.verificare');
+            var idSpecializare = $('#specializare').attr('id');
+            var valoareSpecializare = $('#specializare').val();
+                campuriVerificabile.each(function(i, field){
+                    console.log(field);
+                    if($(field).val()===''){
+                        var idElem = $(field).attr('id'); // https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery
+                        console.log(idElem); //id-ul capului
+                        isValid = false;
+                        console.log('#eroare_'+idElem);
+                        $('#eroare_'+idElem).css('display','block');
+                    }
+                })
+                if(rol==2){
+                    if(valoareSpecializare==''){
+                        $('#eroare_'+idSpecializare).css('display','block');
+                        var mesaj = "Nu ati completat specializarea";
+                        $('#eroare_'+idSpecializare).text(mesaj);
+                        isValid = false
+                    }
+                }
+                if(isValid){
+                    $(this).off('submit').submit();
+                }
+            console.log(campuriVerificabile)
+            
+            });
+$('#formular_utilizatori_editare_parola').on('submit',function (e){
+    e.preventDefault();
+    var isValid = true;
+    $(".alert").css("display","none");
+    var campuriVerificabile = $('.necesita_verificare');
+    var valoareParola = $('#password').val();
+    var valoareParolaRe = $('#password_re').val();
+    var idParola = $('#password').attr('id');
+    var idParolaRe = $('#password_re').attr('id');
+    campuriVerificabile.each(function(i, field){
+        console.log(field);
+        if($(field).val()===''){
+            var idElem = $(field).attr('id'); // https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery
+            console.log(idElem); //id-ul capului
+            isValid = false;
+            console.log('#eroare_'+idElem);
+            $('#eroare_'+idElem).css('display','block');
+        }
+    })
+    if(valoareParola!==valoareParolaRe){
+        isValid = false;
+        $('#eroare_'+idParolaRe).css('display','block');
+        $('#eroare_'+idParola).css('display','block');
+        var mesaj = "Parolele nu sunt la fel";
+        $('#eroare_'+idParolaRe).text(mesaj);
+        $('#eroare_'+idParola).text(mesaj);
+    }
+});
+</script>
       <!-- /.container-fluid -->
  <?php 
   include("./footer.php");

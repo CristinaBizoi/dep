@@ -33,7 +33,7 @@ include("./header.php");
         <!-- Page Content -->
         <h1>Utilizator adaugare</h1>
         <hr>
-        <form method="POST" action="./utilizatori_adaugare">
+        <form method="POST" action="./utilizatori_adaugare" id="formular_utilizatori">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -52,7 +52,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="parola" placeholder="Introduceti parola">
+                            <input type="password" class="form-control verificare" id="password" name="parola" placeholder="Introduceti parola">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password">
+                                Nu ati introdus parola
+                            </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +63,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                             <label for="password_re">Password</label>
-                            <input type="password" class="form-control" id="password_re" name="parola_re" placeholder="Reintroduceti parola">
+                            <input type="password" class="form-control verificare" id="password_re" name="parola_re" placeholder="Reintroduceti parola">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_password_re">
+                                Nu ati introdus parola
+                            </div>
                     </div>
                 </div>
             </div>
@@ -69,9 +75,12 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="rol"> Selecteaza rol </label>
-                        <select class="form-control" id="rol" name="rol">
+                        <select class="form-control verificare" id="rol" name="rol">
                             <option value="1">Administrator</option>
                             <option value="2">Medic</option>
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
+                               Alegeti un rol
+                            </div>
                         </select>
                     </div>
                 </div>
@@ -80,7 +89,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
-                        <input type="text" name="specializare" class="form-control" id="specializare" placeholder="Introduceti specializarea">
+                        <input type="text" name="specializare" class="form-control verificare" id="specializare" placeholder="Introduceti specializarea">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_specializare">
+                            Nu ati introdus specializarea
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +100,10 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="email">E-mail</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="E-mail">
+                        <input type="email" name="email" class="form-control verificare" id="email" placeholder="E-mail">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_email">
+                            Nu ati introdus emailul
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
@@ -132,8 +147,54 @@ $('#rol').on('change',function(e){ //vedem cand schimba valoarea din select
     }
 
 })
+$('#formular_utilizatori').on('submit',function (e){
+            e.preventDefault();
+            var isValid = true;
+            $(".alert").css("display","none");
+           //selectez toate capurile care au clasa verificare
+           var campuriVerificabile = $('.verificare');
+           var valoareParola = $('#password').val();
+           var valoareParolaRe = $('#password_re').val();
+           var idParola = $('#password').attr('id');
+           var idParolaRe = $('#password_re').attr('id');
+           var idSpecializare = $('#specializare').attr('id');
+           var valoareSpecializare = $('#specializare').val();
+            campuriVerificabile.each(function(i, field){
+                console.log(field);
+                if($(field).val()===''){
+                    var idElem = $(field).attr('id'); // https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery
+                    console.log(idElem); //id-ul capului
+                    isValid = false;
+                    console.log('#eroare_'+idElem);
+                    $('#eroare_'+idElem).css('display','block');
+                }
+            })
+            if(valoareParola!==valoareParolaRe){
+                isValid = false;
+                $('#eroare_'+idParolaRe).css('display','block');
+                $('#eroare_'+idParola).css('display','block');
+                var mesaj = "Parolele nu sunt la fel";
+                $('#eroare_'+idParolaRe).text(mesaj);
+                $('#eroare_'+idParola).text(mesaj);
+
+           }
+            if(rol==2){
+                if(valoareSpecializare==''){
+                    $('#eroare_'+idSpecializare).css('display','block');
+                    var mesaj = "Nu ati completat specializarea";
+                    $('#eroare_'+idSpecializare).text(mesaj);
+                    isValid = false
+                }
+            }
+            if(isValid){
+                $(this).off('submit').submit();
+            }
+           console.log(campuriVerificabile)
+           
+        });
 
 </script>
+
 
  <?php 
   include("./footer.php");
