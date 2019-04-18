@@ -35,12 +35,10 @@
       <div class="container-fluid  pb-5">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+            <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="./utilizatori_listare">Utilizatori</a></li>
+            <li class="breadcrumb-item active">Editare utilizator</li>
         </ol>
-
         <!-- Page Content -->
         <h1>Utilizator editare</h1>
         <hr>

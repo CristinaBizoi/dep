@@ -24,10 +24,9 @@ include("./header.php");
       <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Blank Page</li>
+            <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="./utilizatorilistare">Utilizatori</a></li>
+            <li class="breadcrumb-item active">Adaugare utilizator</li>
         </ol>
 
         <!-- Page Content -->
