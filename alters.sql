@@ -16,3 +16,4 @@ ADD `rh` TINYINT(1) NOT NULL AFTER `grupa_sange`,
 ADD `acord_fisa` TINYINT(1) NOT NULL AFTER `rh`, 
 ADD `donator` TINYINT(1) NOT NULL AFTER `acord_fisa`;
 
+ALTER TABLE `pacienti` ADD `avertizari` TEXT NOT NULL AFTER `donator`;

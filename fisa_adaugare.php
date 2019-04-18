@@ -77,13 +77,17 @@ if(isset($_POST) && !empty($_POST)){
     }
     header('Location:./pacienti_listare?mesaj='.urlencode('Fisa a fost adaugata'));
     exit();
+   
 }
 
 //scoatem informatiile despre pacient
 require_once("./_inc/models/Pacienti.php");
 $pacientObject = new Pacienti();
 $pacient = $pacientObject->getPacient($id);
-
+$sexe = array(
+    '1'=>"M",
+    '2'=>"F"
+);
 //verificam daca am gasit date despre pacient (daca exista)
 if(empty($pacient)){
     header('Location:./pacienti_listare?mesaj='.urlencode('Utilizatorul nu exista'));
@@ -110,12 +114,16 @@ include("./header.php");
             <p><b>Nume:</b> <?php echo $pacient["nume"]; ?></p>
             <p><b>Prenume:</b> <?php echo $pacient["prenume"]; ?></p>
             <p><b>CNP:</b> <?php echo $pacient["cnp"]; ?></p>
-            <p><b>Sex:</b> <?php echo $pacient["sex"]; ?></p>
-        </div>
-        <div class="col-6">
+            <p><b>Sex:</b> <?php echo $sexe[$pacient["sex"]]; ?></p>
             <p><b>Data nasterii:</b> <?php echo date("d.m.Y",strtotime($pacient["data_nastere"])); ?></p>
             <p><b>Telefon:</b> <?php echo $pacient["telefon"]; ?></p>
+        </div>
+        <div class="col-6">                   
             <p><b>E-mail:</b> <?php echo $pacient["email"]; ?></p>
+            <p><b>Rh:</b> <?php echo ($pacient["rh"])?"Da":"Nu"; ?></p>
+            <p><b>Grupa sangvina:</b> <?php echo $pacient["grupa_sange"]; ?></p>
+            <p><b>Donator?:</b> <?php echo ($pacient["donator"])?"Da":"Nu"; ?></p>
+            <p><b>Avertizari:</b> <?php echo $pacient["avertizari"]; ?></p>
         </div>
     </div>
     <h2>Informatii</h2>

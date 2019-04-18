@@ -63,13 +63,14 @@
                 <p><b>CNP:</b> <?php echo $pacient["cnp"]; ?></p>
                 <p><b>Sex:</b> <?php echo $sexe[$pacient["sex"]]; ?></p>
                 <p><b>Data nasterii:</b> <?php echo date("d.m.Y",strtotime($pacient["data_nastere"])); ?></p>
-            </div>
-            <div class="col-6">           
                 <p><b>Telefon:</b> <?php echo $pacient["telefon"]; ?></p>
+            </div>
+            <div class="col-6">                   
                 <p><b>E-mail:</b> <?php echo $pacient["email"]; ?></p>
                 <p><b>Rh:</b> <?php echo ($pacient["rh"])?"Da":"Nu"; ?></p>
                 <p><b>Grupa sangvina:</b> <?php echo $pacient["grupa_sange"]; ?></p>
                 <p><b>Donator?:</b> <?php echo ($pacient["donator"])?"Da":"Nu"; ?></p>
+                <p><b>Avertizari:</b> <?php echo $pacient["avertizari"]; ?></p>
             </div>
         </div>
         <h2>Fise</h2>

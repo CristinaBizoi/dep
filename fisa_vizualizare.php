@@ -74,13 +74,14 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
             <p><b>CNP:</b> <?php echo $fisa["cnp"]; ?></p>
             <p><b>Sex:</b> <?php echo $sexe[$fisa["sex"]]; ?></p>
             <p><b>Data nasterii:</b> <?php echo date("d.m.Y",strtotime($fisa["data_nastere"])); ?></p>
-        </div>
-        <div class="col-6">           
             <p><b>Telefon:</b> <?php echo $fisa["telefon"]; ?></p>
+        </div>
+        <div class="col-6">                   
             <p><b>E-mail:</b> <?php echo $fisa["email"]; ?></p>
             <p><b>Rh:</b> <?php echo ($fisa["rh"])?"Da":"Nu"; ?></p>
             <p><b>Grupa sangvina:</b> <?php echo $fisa["grupa_sange"]; ?></p>
             <p><b>Donator?:</b> <?php echo ($fisa["donator"])?"Da":"Nu"; ?></p>
+            <p><b>Avertizari:</b> <?php echo $fisa["avertizari"]; ?></p>
         </div>
     </div>
     <h2>Informatii</h2>
