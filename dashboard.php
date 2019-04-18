@@ -12,17 +12,16 @@
         </ol>
 
         <!-- Page Content -->
-        <h1>Bun venit</h1>
         <hr>
-        <p>Esti logat ca:.</p>
-        <?php
-        if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]){
-          echo $_SESSION["type"];
-        }
-        ?>
-<pre>
-<?php print_r($_SESSION); ?>
-</pre>
+        <!-- <p>Esti logat ca:.</p>
+         -
+        // if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]){
+          // echo $_SESSION["type"];
+        // }
+        // -->
+
+ <h2> Bine ai revenit,<?php echo $_SESSION["prenume"]; ?> </h2>
+
       </div>
       <!-- /.container-fluid -->
 

@@ -15,6 +15,7 @@ class Pacienti extends Db{
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
             `sex` = '".$post["sex"]."',
+            `avertizari` = '".$post["avertizari"]."',
             `acord_fisa` = '".$post["acord_fisa"]."'
               ";
         $rezultat = $this->getQuerry($query);
@@ -55,8 +56,9 @@ class Pacienti extends Db{
             `email` = '".$post["email"]."',
             `data_nastere` = '".$post["data_nastere"]."',
             `acord_fisa` = '".$post["acord_fisa"]."',
+            `sex` = '".$post["sex"]."',
             `donator` = '".$post["donator"]."',
-            `sex` = '".$post["sex"]."'
+            `avertizari` = '".$post["avertizari"]."'
          WHERE `id`='".$id."'";
          $rezultat = $this->getQuerry($query);
     }

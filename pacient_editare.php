@@ -18,6 +18,7 @@
         exit();
     }
     $pacient = $pacientObject->getPacient($id);
+    var_dump($pacient);
     if(isset($_POST)&&!empty($_POST)&&$_POST["act"]=="changepin"){
         $error = false;
         if ($_POST["pin"] != $_POST["pin_re"]){
@@ -114,6 +115,14 @@
                     <div class="form-group">
                         <label for="data_nastere">Data nasterii</label>
                         <input type="date" name="data_nastere" class="form-control" id="data_nastere" placeholder="Data nasterii" value="<?php echo $pacient["data_nastere"]; ?>">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="avertizari" value="<?php echo $pacient["avertizari"]; ?>"></textarea>
+                        <small>Se completeaza informatii despre boli cronice, alergii sau alte informatii vitale.</small>
                     </div>
                 </div>
             </div>

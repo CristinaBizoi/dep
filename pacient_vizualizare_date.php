@@ -4,8 +4,15 @@
     }else{
         exit();
     }
+    if($_SESSION["logged_in"] && $_SESSION["type"]=='pacient'){
+        if($_SESSION["user_id"]!=$id){
+            header('Location:./dashboard');
+            exit();
+        }
+    }
     require_once('./_inc/models/Pacienti.php');
     $pacientObject = new Pacienti();
+    
     if(isset($_POST) && !empty($_POST)&&$_POST["act"]=="changedetails"){
         if(!isset($_POST['acord_fisa'])){
             $_POST['acord_fisa']=0;
