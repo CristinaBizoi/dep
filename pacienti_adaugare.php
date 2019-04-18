@@ -105,6 +105,14 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="avertizari"></textarea>
+                        <small>Se completeaza informatii despre boli cronice, alergii sau alte informatii vitale.</small>
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label for="sex">Sex</label><br>
                 <div class="custom-control custom-radio custom-control-inline">
