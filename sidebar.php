@@ -27,4 +27,11 @@
           <span>Fisele mele</span></a>
       </li>
       <?php } ?>
+      <?php if(isset($_SESSION["type"]) && $_SESSION["type"]=="pacient"){ ?>
+      <li class="nav-item">
+        <a class="nav-link" href="./pacient_vizualizare_date?id=<?php echo $_SESSION["user_id"]; ?>">
+        <i class="far fa-list-alt"></i>
+          <span>Datele personale</span></a>
+      </li>
+      <?php } ?>
     </ul>
