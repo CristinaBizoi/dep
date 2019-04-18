@@ -2,11 +2,10 @@
     if(isset($_POST) && !empty($_POST)){
         require_once("./_inc/models/Pacienti.php");
         $pacient = new Pacienti();
-        if($_POST['acord_fisa'] == '1'){
-            $pacient->addPacientAccord($_POST);
-        }else{
-            $pacient->addPacientNoAccord($_POST);
+        if(!isset($_POST['acord_fisa'])){
+            $_POST['acord_fisa']=0;
         }
+        $pacient->addPacient($_POST);
         header('Location:./pacienti_listare');
         exit();
     }
@@ -30,27 +29,39 @@
                 <div class="col-6">
                     <div class="form-group">
                             <label for="nume_pacient">Nume</label>
-                            <input type="text" name="nume_pacient" class="form-control form-field" id="nume_pacient" aria-describedby="nume_pacient" placeholder="Introduceti nume">
+                            <input type="text" name="nume_pacient" class="form-control form-field verificare" id="input_1" aria-describedby="nume_pacient" placeholder="Introduceti nume">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_1">
+                             Nu ati introdus numele
+                            </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="prenume_pacient">Prenume</label>
-                        <input type="text" name="prenume_pacient" class="form-control form-field" id="prenume_pacient" placeholder="Introduceti prenume">
-                    </div>
+                        <input type="text" name="prenume_pacient" class="form-control form-field verificare" id="input_2" placeholder="Introduceti prenume">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_2">
+                            Nu ati introdus prenumele
+                        </div>
+                   </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="cnp">CNP</label>
-                        <input type="text" name="cnp" class="form-control form-field" id="cnp" placeholder="CNP">
+                        <input type="text" name="cnp" class="form-control form-field verificare" id="input_3" placeholder="CNP">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_3">
+                            Nu ati introdus cnp
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="pin">Pin</label>
-                        <input type="text" name="pin" class="form-control form-field" id="pin" placeholder="Introduceti PIN">
+                        <input type="text" name="pin" class="form-control form-field verificare" id="input_4" placeholder="Introduceti PIN">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_4">
+                         Nu ati introdus pinul
+                        </div>
                     </div>
                 </div>
             </div>
@@ -118,12 +129,47 @@
     </div>
       <!-- /.container-fluid -->
 <script>
-   $('#myForm').on('submit',function (e){
+  $('#myForm').on('submit',function (e){
             e.preventDefault();
-            console.log('Incearca sa trimita');
             var isValid = true;
-            var valoareEmail = $('#email').val();
-            console.log(valoareEmail);
+            $(".alert").css("display","none");
+           //selectez toate capurile care au clasa verificare
+           var campuriVerificabile = $('.verificare');
+           var valoareCnp = $('#input_3');
+           var valoarePin = $('#input_4');
+           console.log(campuriVerificabile);
+
+           //parcurg campurile rezultate https://stackoverflow.com/questions/4735342/jquery-to-loop-through-elements-with-the-same-class
+           campuriVerificabile.each(function(i, field){
+             // i este pozitia in array
+             // field este input-ul
+             console.log(field);
+
+             if($(field).val()===''){
+                 var idElem = $(field).attr('id'); // https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery
+                console.log(idElem); //id-ul capului
+                isValid = false;
+                console.log('#eroare_'+idElem);
+                $('#eroare_'+idElem).css('display','block');
+             }
+           })
+           if(valoareCnp.length<10){
+                $("#eroare_input3").css('display','block');
+                var mesaj = "Introduceti un cnp valid";
+                $("#eroare_input_3").text(mesaj);
+                // $('#eroare_'+idElem).css('display','block');
+                isValid = false;
+            }
+           if(valoarePin.length != 4){
+                $("#eroare_input4").css('display','block');
+                var mesaj = "Trebuie sa contina 4 caractere";
+                $("#eroare_input_4").text(mesaj);
+                isValid = false;
+            }
+            if(isValid){
+                $(this).off('submit').submit();
+            }
+        
         });
 </script>
  <?php 

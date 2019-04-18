@@ -7,6 +7,12 @@
     require_once('./_inc/models/Pacienti.php');
     $pacientObject = new Pacienti();
     if(isset($_POST) && !empty($_POST)&&$_POST["act"]=="changedetails"){
+        if(!isset($_POST['acord_fisa'])){
+            $_POST['acord_fisa']=0;
+        }
+        if(!isset($_POST['donator'])){
+            $_POST['donator']=0;
+        }
         $pacientObject->editPacient($id, $_POST);
         header('Location:./pacienti_listare');
         exit();
@@ -41,18 +47,24 @@
 <!-- Page Content -->
 <h1>Pacient editare</h1>
 <hr>
-        <form method="POST" action="./pacient_editare?id=<?php echo $pacient["id"]; ?>">
+        <form method="POST" action="./pacient_editare?id=<?php echo $pacient["id"]; ?>" id="myForm">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                             <label for="nume_pacient">Nume</label>
-                            <input type="text" name="nume_pacient" class="form-control" id="nume_pacient" aria-describedby="nume_pacient" placeholder="Introduceti nume" value="<?php echo $pacient["nume"]; ?>">
+                            <input type="text" name="nume_pacient" class="form-control verificare" id="input_1" aria-describedby="nume_pacient" placeholder="Introduceti nume" value="<?php echo $pacient["nume"]; ?>">
+                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_1">
+                                Nu ati introdus numele
+                            </div> 
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="prenume_pacient">Prenume</label>
-                        <input type="text" name="prenume_pacient" class="form-control" id="prenume_pacient" placeholder="Introduceti prenume" value="<?php echo $pacient["prenume"]; ?>">
+                        <input type="text" name="prenume_pacient" class="form-control verificare" id="input_2" placeholder="Introduceti prenume" value="<?php echo $pacient["prenume"]; ?>">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_2">
+                            Nu ati introdus prenumele
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -60,7 +72,10 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="cnp">CNP</label>
-                        <input type="text" name="cnp" class="form-control" id="cnp" placeholder="CNP" value="<?php echo $pacient["cnp"]; ?>">
+                        <input type="text" name="cnp" class="form-control verificare" id="input_3" placeholder="CNP" value="<?php echo $pacient["cnp"]; ?>">
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_3">
+                            Introduceti un CNP valid
+                        </div> 
                     </div>
                 </div>
             </div>
@@ -118,8 +133,8 @@
                 <div class="col-sm-3">Sunt de acord cu donarea de organe</div>
                 <div class="col-sm-9">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                    <label class="form-check-label" for="gridCheck1">
+                    <input class="form-check-input" type="checkbox" id="donator" name="donator" value="1" <?php if($pacient["donator"]==1){ echo "checked";}?>>
+                    <label class="form-check-label" for="donator">
                     Da, sunt de acord.
                     </label>
                 </div>
@@ -129,7 +144,7 @@
                 <div class="col-sm-3">Sunt de acord cu fisa medicala</div>
                 <div class="col-sm-9">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="acord_fisa" id="acord_fisa">
+                    <input class="form-check-input" type="checkbox" name="acord_fisa" id="acord_fisa" value="1" <?php if($pacient["acord_fisa"]==1){ echo "checked";}?>>
                     <label class="form-check-label" for="acord_fisa">
                     Da, sunt de acord.
                     </label>
@@ -159,6 +174,35 @@
         </form>
 
 </div>
+<script>
+$('#myForm').on('submit',function (e){
+    e.preventDefault();
+    var isValid = true;
+    var campuriVerificabile = $('.verificare');
+    var valoareCnp = $('#input_3');
+    // var valoarePin = $('#input_4');
+    campuriVerificabile.each(function(i, field){
+        console.log(field);
+        if($(field).val()===''){
+            var idElem = $(field).attr('id'); // https://stackoverflow.com/questions/3239598/how-can-i-get-the-id-of-an-element-using-jquery
+            console.log(idElem); //id-ul capului
+            isValid = false;
+            console.log('#eroare_'+idElem);
+            $('#eroare_'+idElem).css('display','block');
+        }
+    })
+        if(valoareCnp.length<10){
+            $("#eroare_input_3").css('display','block');
+            var mesaj = "Introduceti un cnp valid";
+            $("#eroare_input_3").text(mesaj);
+            // $('#eroare_'+idElem).css('display','block');
+            isValid = false;
+        }
+        if(isValid){
+            $(this).off('submit').submit();
+        }
+    });
+</script>
 <?php 
   include("./footer.php");
  ?>
