@@ -14,7 +14,7 @@
             $_POST['donator']=0;
         }
         $pacientObject->editPacient($id, $_POST);
-        header('Location:./pacienti_listare');
+        header('Location:./pacient_fise?id='.$id);
         exit();
     }
     $pacient = $pacientObject->getPacient($id);
