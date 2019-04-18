@@ -75,14 +75,15 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="rol"> Selecteaza rol </label>
-                        <select class="form-control verificare" id="rol" name="rol">
-                            <option value="">Selecteaza</option>
-                            <option value="1">Administrator</option>
-                            <option value="2">Medic</option>
-                            <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
-                               Alegeti un rol
-                            </div>
-                        </select>
+                        <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
+                         Alegeti un rol
+                            <select class="form-control verificare" id="rol" name="rol">
+                                <option value="">Selecteaza</option>
+                                <option value="1">Administrator</option>
+                                <option value="2">Medic</option>
+                            
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,7 +91,7 @@ include("./header.php");
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
-                        <input type="text" name="specializare" class="form-control verificare" id="specializare" placeholder="Introduceti specializarea">
+                        <input type="text" name="specializare" class="form-control" id="specializare" placeholder="Introduceti specializarea">
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_specializare">
                             Nu ati introdus specializarea
                         </div>
