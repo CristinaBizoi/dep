@@ -30,12 +30,10 @@
 
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="index.html">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Lista pacienti</li>
-        </ol>
 
+            <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item active">Pacienti</li>
+        </ol>
         <!-- Page Content -->
         <div class="d-flex">
         <h1> Listare Pacienti</h1>
