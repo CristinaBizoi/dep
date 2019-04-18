@@ -159,13 +159,13 @@
             <div class="col-6">
                     <div class="form-group">
                         <label for="pin">PIN nou</label>
-                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" >
+                        <input type="number" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" >
                     </div>
             </div>
             <div class="col-6">
                     <div class="form-group">
                         <label for="pin">Reintroducere PIN</label>
-                        <input type="text" name="pin_re" class="form-control" id="pin" placeholder="Rentroduceti PIN">
+                        <input type="number" name="pin_re" class="form-control" id="pin" placeholder="Rentroduceti PIN">
                     </div>
             </div>
         </div>
@@ -192,7 +192,7 @@ $('#myForm').on('submit',function (e){
             $('#eroare_'+idElem).css('display','block');
         }
     })
-        if(valoareCnp.length<10){
+        if(valoareCnp.length!=13){
             $("#eroare_input_3").css('display','block');
             var mesaj = "Introduceti un cnp valid";
             $("#eroare_input_3").text(mesaj);

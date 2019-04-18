@@ -58,7 +58,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="pin">Pin</label>
-                        <input type="text" name="pin" class="form-control form-field verificare" id="input_4" placeholder="Introduceti PIN">
+                        <input type="number" name="pin" class="form-control form-field verificare" id="input_4" placeholder="Introduceti PIN">
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_4">
                          Nu ati introdus pinul
                         </div>
@@ -153,7 +153,7 @@
                 $('#eroare_'+idElem).css('display','block');
              }
            })
-           if(valoareCnp.length<10){
+           if(valoareCnp.length!=13){
                 $("#eroare_input_3").css('display','block');
                 var mesaj = "Introduceti un cnp valid";
                 $("#eroare_input_3").text(mesaj);
