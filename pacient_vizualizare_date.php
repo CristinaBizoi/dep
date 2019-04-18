@@ -37,7 +37,7 @@
   <li class="breadcrumb-item">
     <a href="index.html">Dashboard</a>
   </li>
-  <li class="breadcrumb-item active">Date personale</li>
+  <li class="breadcrumb-item active">Modifica date personale</li>
 </ol>
 
 <!-- Page Content -->
