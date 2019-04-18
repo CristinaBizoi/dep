@@ -29,10 +29,10 @@
             exit();
         }
     }
-include("./header.php");
+    include("./header.php");
 ?>
 
-      <div class="container-fluid">
+      <div class="container-fluid  pb-5">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -127,6 +127,8 @@ include("./header.php");
             <input type="hidden" name="act" value="changedetails">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+
+        <h3 class="my-4">Editrare paroala</h3>
 
         <form method="POST" action="./utilizator_editare?id=<?php echo $utilizator["id"]; ?>" id="formular_utilizatori_ediatare_parola">
             <div class="row">

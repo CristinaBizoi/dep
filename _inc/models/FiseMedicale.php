@@ -30,6 +30,7 @@ class FiseMedicale extends Db{
         }
         $query = " SELECT fm.`data_adaugare`, fm.`observatii`, fm.`tip_fisa`, fm.`id_spital`, s.`nume`  AS `nume_spital`,
             p.`id` as id_pacient, p.`nume` as nume_pacient, p.`prenume` as prenume_pacient, p.`cnp`, p.`data_nastere`, p.`sex`, p.`telefon`, p.`email`,
+            p.`grupa_sange`, p.`rh`,p.`acord_fisa`, p.`donator`,
             u.`id` as id_user, u.`nume` as nume_utilizator, u.`prenume` as prenume_utilizator
         FROM `fise_medicale` as fm
         LEFT JOIN `pacienti` as p ON (fm.`id_pacient` = p.`id`)

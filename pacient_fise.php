@@ -36,7 +36,10 @@
         '2'=>'Externare',
         '3'=>'Consult',
     );
-
+    $sexe = array(
+        '1'=>"M",
+        '2'=>"F"
+    );
     include("./header.php");
 ?>
 
@@ -58,12 +61,15 @@
                 <p><b>Nume:</b> <?php echo $pacient["nume"]; ?></p>
                 <p><b>Prenume:</b> <?php echo $pacient["prenume"]; ?></p>
                 <p><b>CNP:</b> <?php echo $pacient["cnp"]; ?></p>
-                <p><b>Sex:</b> <?php echo $pacient["sex"]; ?></p>
-            </div>
-            <div class="col-6">
+                <p><b>Sex:</b> <?php echo $sexe[$pacient["sex"]]; ?></p>
                 <p><b>Data nasterii:</b> <?php echo date("d.m.Y",strtotime($pacient["data_nastere"])); ?></p>
+            </div>
+            <div class="col-6">           
                 <p><b>Telefon:</b> <?php echo $pacient["telefon"]; ?></p>
                 <p><b>E-mail:</b> <?php echo $pacient["email"]; ?></p>
+                <p><b>Rh:</b> <?php echo ($pacient["rh"])?"Da":"Nu"; ?></p>
+                <p><b>Grupa sangvina:</b> <?php echo $pacient["grupa_sange"]; ?></p>
+                <p><b>Donator?:</b> <?php echo ($pacient["donator"])?"Da":"Nu"; ?></p>
             </div>
         </div>
         <h2>Fise</h2>

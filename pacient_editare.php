@@ -34,7 +34,7 @@
     // var_dump($pacient);
   include("./header.php");
 ?>
-<div class="container-fluid">
+<div class="container-fluid  pb-5">
 
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
@@ -154,6 +154,7 @@
             <input type="hidden" name="act" value="changedetails">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <h3 class="my-4">Editrare PIN</h3>
         <form method="POST" action="./pacient_editare?id=<?php echo $pacient["id"]; ?>">
         <div class="row">
             <div class="col-6">

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin - Blank Page</title>
+  <title>DEP proiect</title>
 
   <!-- Custom fonts for this template-->
   <link href="./public/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
