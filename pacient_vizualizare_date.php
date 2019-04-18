@@ -41,7 +41,7 @@
 </ol>
 
 <!-- Page Content -->
-<h1>Pacient editare</h1>
+<h1>Modifica date personale</h1>
 <hr>
         <form method="POST" action="./pacient_vizualizare_date?id=<?php echo $pacient["id"]; ?>" id="myForm">
             <div class="row">
