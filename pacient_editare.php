@@ -39,9 +39,11 @@
 
 <!-- Breadcrumbs-->
 <ol class="breadcrumb">
+
     <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
     <li class="breadcrumb-item"><a href="./pacienti_listare">Pacienti</a></li>
     <li class="breadcrumb-item active">Editare pacient</li>
+
 </ol>
 
 <!-- Page Content -->
@@ -90,6 +92,7 @@
                     <div class="form-group">
                         <label for="rh">Adaugare Rh</label>
                         <select class="form-control" id="rh" name="rh" >
+                            <option value="">Alegeti Rh</option>
                             <option value="1" <?php if($pacient["rh"]==1){ echo "selected";}?>>+</option>
                             <option value="2" <?php if($pacient["rh"]==2){ echo "selected";}?>>-</option>
                         </select>
@@ -160,26 +163,26 @@
                 </div>
             </div>
             <input type="hidden" name="act" value="changedetails">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>
-        <h3 class="my-4">Editrare PIN</h3>
+        <h3 class="my-3 mt-5">Editrare PIN</h3>
         <form method="POST" action="./pacient_editare?id=<?php echo $pacient["id"]; ?>">
         <div class="row">
             <div class="col-6">
                     <div class="form-group">
                         <label for="pin">PIN nou</label>
-                        <input type="number" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" >
+                        <input type="text" name="pin" class="form-control" id="pin" placeholder="Introduceti PIN" >
                     </div>
             </div>
             <div class="col-6">
                     <div class="form-group">
                         <label for="pin">Reintroducere PIN</label>
-                        <input type="number" name="pin_re" class="form-control" id="pin" placeholder="Rentroduceti PIN">
+                        <input type="text" name="pin_re" class="form-control" id="pin" placeholder="Rentroduceti PIN">
                     </div>
             </div>
         </div>
         <input type="hidden" name="act" value="changepin">
-        <button type="submit" class="btn btn-primary">Submit</button> 
+        <button type="submit" class="btn btn-primary mt-1">Submit</button> 
         </form>
 
 </div>

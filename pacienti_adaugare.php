@@ -57,7 +57,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="pin">Pin</label>
-                        <input type="number" name="pin" class="form-control form-field verificare" id="input_4" placeholder="Introduceti PIN">
+                        <input type="text" name="pin" class="form-control form-field verificare" id="input_4" placeholder="Introduceti PIN">
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_input_4">
                          Nu ati introdus pinul
                         </div>
@@ -107,6 +107,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
+                        <label for="avertizari">Avertizari</label>
                         <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" name="avertizari"></textarea>
                         <small>Se completeaza informatii despre boli cronice, alergii sau alte informatii vitale.</small>
                     </div>
@@ -118,7 +119,7 @@
                     <input type="radio" name="sex" id="masculin" value="1" class="custom-control-input">
                     <label class="custom-control-label form-field" for="masculin">Masculin</label>
                 </div>
-                <div class="custom-control custom-radio custom-control-inline">
+                <div class="custom-control custom-radio custom-control-inline mb-3">
                     <input type="radio" name="sex" id="feminin" value="2"  class="custom-control-input">
                     <label class="custom-control-label form-field" for="feminin">Feminin</label>
                 </div>
@@ -131,7 +132,7 @@
                     </label>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
     
     </div>
