@@ -76,14 +76,15 @@ include("./header.php");
                     <div class="form-group">
                         <label for="rol"> Selecteaza rol </label>
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
-                         Alegeti un rol
-                            <select class="form-control verificare" id="rol" name="rol">
-                                <option value="">Selecteaza</option>
-                                <option value="1">Administrator</option>
-                                <option value="2">Medic</option>
-                            
-                            </select>
-                        </div>
+                             Alegeti un rol
+                         </div> 
+                        <select class="form-control verificare" id="rol" name="rol">
+                            <option value="">Selecteaza</option>
+                            <option value="1">Administrator</option>
+                            <option value="2">Medic</option>
+                        
+                        </select>
+                     
                     </div>
                 </div>
             </div>
@@ -180,6 +181,7 @@ $('#formular_utilizatori').on('submit',function (e){
                 $('#eroare_'+idParola).text(mesaj);
 
            }
+           var rol= $('#rol').val(); //ne asiguram ca e setata variabila
             if(rol==2){
                 if(valoareSpecializare==''){
                     $('#eroare_'+idSpecializare).css('display','block');

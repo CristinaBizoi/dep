@@ -64,16 +64,17 @@ include("./header.php");
                     <div class="form-group">
                         <label for="rol"> Selecteaza rol </label>
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_rol">
-                        Alegeti un rol
-                        <select class="form-control verificare" id="rol" name="rol">
+                            Alegeti un rol
+                        </div>
+                        <select class="form-control" id="rol" name="rol">
                             <option value="1" <?php if($utilizator["rol"]==1){ echo "selected";}?>>Administrator</option>
                             <option value="2" <?php if($utilizator["rol"]==2){ echo "selected";}?>>Medic</option>
                         </select>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
-            <div class="row" id="specializare_camp">
+            <div class="row" id="specializare_camp"  <?php if($utilizator["rol"]==1){ echo 'style="display:none"'; } ?>>
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
@@ -84,6 +85,7 @@ include("./header.php");
                     </div>
                 </div>
             </div>
+  
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -195,6 +197,7 @@ include("./header.php");
                         $('#eroare_'+idElem).css('display','block');
                     }
                 })
+                var rol= $('#rol').val(); //ne asiguram ca e setata variabila
                 if(rol==2){
                     if(valoareSpecializare==''){
                         $('#eroare_'+idSpecializare).css('display','block');
@@ -236,6 +239,10 @@ $('#formular_utilizatori_editare_parola').on('submit',function (e){
         $('#eroare_'+idParolaRe).text(mesaj);
         $('#eroare_'+idParola).text(mesaj);
     }
+       if(isValid){
+                $(this).off('submit').submit();
+            }
+           console.log(campuriVerificabile)
 });
 </script>
       <!-- /.container-fluid -->
