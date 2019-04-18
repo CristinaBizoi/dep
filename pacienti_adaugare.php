@@ -76,6 +76,7 @@
                     <div class="form-group">
                         <label for="rh">Adaugare Rh</label>
                         <select class="form-control" id="rh" name="rh">
+                            <option value="">Selecteaza</option>
                             <option value="1">+</option>
                             <option value="2">-</option>
                         </select>

@@ -86,11 +86,11 @@ include("./header.php");
                     </div>
                 </div>
             </div>
-            <div class="row" id="specializare">
+            <div class="row" id="specializare" style="display:none">
                 <div class="col-6">
                     <div class="form-group">
                         <label for="specializare">Specializare</label>
-                        <input type="text" name="specializare" style="display:none" class="form-control verificare" id="specializare" placeholder="Introduceti specializarea">
+                        <input type="text" name="specializare" class="form-control verificare" id="specializare" placeholder="Introduceti specializarea">
                         <div class="alert alert-danger" role="alert" style="display:none" id="eroare_specializare">
                             Nu ati introdus specializarea
                         </div>
