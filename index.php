@@ -54,12 +54,12 @@ if(isset($_GET["page"])){
 }
 
 //verificam daca este logat
-// if(!isset($_SESSION["logged_in"])){
-//   if($page!='login_pacient' && $page!='login'){
-//     header("Location:./login_pacient");
-//     exit();    
-//   }
-// }
+if(!isset($_SESSION["logged_in"])){
+  if($page!='login_pacient' && $page!='login'){
+    header("Location:./login_pacient");
+    exit();    
+  }
+}
 
 $db_object = new Db();
 if(is_file("./".$page.".php")){

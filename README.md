@@ -1,5 +1,4 @@
-# DEP
-Proeict Dosarul electronic al pacientului
+# DEP Dosarul electronic al pacientului
 
 - Platforma online prin care pot fi adaugate si vizualizate fisele medicale ale pacientilor unor spitale
 
@@ -16,3 +15,11 @@ Proeict Dosarul electronic al pacientului
 - Boostrap 4
 - jQuery
 - Mysql
+
+# Demo Pacienti
+ - CNP: 2592224310
+ - PIN: 1234
+
+# Demo medic
+ - email: demo@cristinabizoi.ro
+ - parola: Test123

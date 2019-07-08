@@ -5,7 +5,7 @@ if(isset($_SESSION["logged_in"]) && $_SESSION["type"]=="user" && $_SESSION["rol"
     $userID = $_SESSION["user_id"];
     $spital = $_SESSION["id_spital"];
 }else{
-    header('Location: ./dashboard');
+    header('Location: ./dashboard?mesaj='.urlencode('Nu e utilizator'));
     exit();
 }
 
