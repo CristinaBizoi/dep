@@ -60,6 +60,11 @@ if(!isset($_SESSION["logged_in"])){
     exit();    
   }
 }
+require __DIR__ . '/vendor/autoload.php';
+
+
+
+
 
 $db_object = new Db();
 if(is_file("./".$page.".php")){

@@ -1,0 +1,66 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "1923a53dd72e71198d10d55e052f20a7",
+    "packages": [
+        {
+            "name": "aranyasen/hl7",
+            "version": "1.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/senaranya/HL7.git",
+                "reference": "9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/senaranya/HL7/zipball/9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe",
+                "reference": "9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-sockets": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "dms/phpunit-arraysubset-asserts": "^0.1.0",
+                "phpunit/phpunit": "^8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Aranyasen\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Aranya Sen",
+                    "email": "sen.aranya@gmail.com",
+                    "role": "Owner"
+                }
+            ],
+            "description": "HL7 parser, generator and sender.",
+            "time": "2019-11-06T04:43:50+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

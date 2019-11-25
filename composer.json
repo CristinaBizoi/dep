@@ -1,0 +1,12 @@
+{
+    "name": "steff/dep",
+    "authors": [
+        {
+            "name": "cristinabizoi",
+            "email": "bizoi.cristina95@gmail.com"
+        }
+    ],
+    "require": {
+        "aranyasen/hl7": "^1.8"
+    }
+}
