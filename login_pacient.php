@@ -28,6 +28,11 @@
 <body class="text-center">
 
     <form class="form-signin" action = "./login_pacient" method="post" role="form">
+        <?php if(isset($error) &&  !empty($error)){ ?>
+            <div class="alert alert-danger">
+                <?php echo $error; ?>
+            </div>
+        <?php } ?>
         <h1 class="h3 mb-3 font-weight-normal">Login Pacient</h1>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input placeholder="CNP" name="cnp" type="text"  class="form-control"  required autofocus>

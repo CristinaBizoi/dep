@@ -3,13 +3,16 @@
 session_start();
 include("./config/db_config.php");
 include("./_inc/classes/Db.php");
+$message = null;
+$error = null;
 if(isset($_POST["act"]) && $_POST["act"]=="login"){
     // echo $_POST["email"]." Vrea sa se logheze";
     require_once('./_inc/models/Utilizatori.php');
     $utilizatoriModel = new Utilizatori();
     $utilizator= $utilizatoriModel->loginUtilizator($_POST["email"]);
-    
-    if($utilizator["parola"]===md5($_POST["parola"])){
+
+
+    if($utilizator && $utilizator["parola"]===md5($_POST["parola"])){
       $_SESSION = array(
         "logged_in" => true, 
         'type' => 'user',
@@ -22,16 +25,16 @@ if(isset($_POST["act"]) && $_POST["act"]=="login"){
     );
     // var_dump($utilizator);
     // exit();
-       echo "User logat";
+       $message =  "User logat";
   }else{
-    echo "Parola nu se potriveste";
+    $error =  "Datele de atentificare nu se potrivessc";
  }
 }
 if(isset($_POST["act_pacient"]) && $_POST["act_pacient"]=="login"){
     require_once('./_inc/models/Pacienti.php');
     $pacientiModel = new Pacienti();
     $pacient = $pacientiModel ->loginPacient($_POST["cnp"]);
-    if($pacient["pin"]===md5($_POST["pin"])){
+    if($pacient && $pacient["pin"]===md5($_POST["pin"])){
       $_SESSION = array(
         "logged_in" => true, 
         'type' => 'pacient',
@@ -40,9 +43,9 @@ if(isset($_POST["act_pacient"]) && $_POST["act_pacient"]=="login"){
         "prenume" => $pacient["prenume"],
         "user_id" => $pacient["id"]
     );
-       echo "User logat";
+        $message =  "User logat";
   }else{
-    echo "Parola nu se potriveste";
+        $error = "Parola nu se potriveste";
  }
 }
 
