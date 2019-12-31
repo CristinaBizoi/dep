@@ -3,6 +3,7 @@ use Aranyasen\HL7\Message;
 use Aranyasen\HL7\Segment;
 use Aranyasen\HL7\Segments\MSH;
 use Aranyasen\HL7\Segments\PID;
+use Aranyasen\HL7\Segments\DG1;
 
 //id-ul fisei
 if(isset($_GET["id"]) && $_GET["id"]>0){
@@ -61,8 +62,16 @@ $pid->setPatientName([$fisa["nume_pacient"], $fisa["prenume_pacient"]]); // Use 
 $pid->setSex($sexe[$fisa["sex"]]);
 $msg->addSegment($pid);
 
-// Adaugam alt segment
+// Adaugam segment pentru diagnostic
+$dg1 = new DG1();
+$dg1->setID($diagnostice["id"]);
+$dg1->setDiagnosisCodeDG1($diagnostice["cod"]);
+$dg1->setDiagnosisDescription($diagnostice["denumire"]);
+$dg1->setDiagnosisDateTime($diagnostice["data_adaugare"]);
+$msg->addSegment($dg1);
 
+
+// Adaugam segment pentru 
 // Create any custom segment
 $abc = new Segment('OBX');
 $abc->setField(1, 'xyz');
