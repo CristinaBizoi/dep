@@ -102,7 +102,7 @@ $msg->addSegment($con);
 //Adaugam segment pentru locatie
 $pv1 = new PV1();
 $pv1->setPatientClass("N");
-$pv1->setAssignedPatientLocation((int)$fisa["id_spital"]);
+$pv1->setAssignedPatientLocation((int)$fisa["nume_spital"]);
 $msg->addSegment($pv1);
 
 // Create any custom segment
