@@ -5,6 +5,7 @@ use Aranyasen\HL7\Segments\MSH;
 use Aranyasen\HL7\Segments\PID;
 use Aranyasen\HL7\Segments\DG1;
 use Aranyasen\HL7\Segments\PV1;
+use Aranyasen\HL7\Segments\OBX;
 
 //id-ul fisei
 if(isset($_GET["id"]) && $_GET["id"]>0){
@@ -105,11 +106,10 @@ $pv1->setAssignedPatientLocation((int)$fisa["id_spital"]);
 $msg->addSegment($pv1);
 
 // Create any custom segment
-$abc = new Segment('OBX');
-$abc->setField(1, 'xyz');
-$abc->setField(2, 22);
-$abc->setField(4, ['']); // Set an empty field at 4th position. 2nd and 3rd positions will be automatically set to empty
-$msg->setSegment($abc, 2); // Message is now: "MSH|^~\&|||||20171116140058|||2017111614005840157||2.3|\nABC|xyz|\n"
+$obx = new OBX();
+$obx->setValueType($fisa["observatii"]);
+$obx->setObservationIdentifier((int)$id);
+$msg->setSegment($obx);
 
 
 echo nl2br($msg->toString(true));
