@@ -4,6 +4,7 @@ use Aranyasen\HL7\Segment;
 use Aranyasen\HL7\Segments\MSH;
 use Aranyasen\HL7\Segments\PID;
 use Aranyasen\HL7\Segments\DG1;
+use Aranyasen\HL7\Segments\PV1;
 
 //id-ul fisei
 if(isset($_GET["id"]) && $_GET["id"]>0){
@@ -60,18 +61,41 @@ $pid = new PID(); // Automatically creates PID segment, and adds segment index a
 $pid->setPatientID($fisa["cnp"]);
 $pid->setPatientName([$fisa["nume_pacient"], $fisa["prenume_pacient"]]); // Use a setter method to add patient's name at standard position (PID.5)
 $pid->setSex($sexe[$fisa["sex"]]);
+$pid->setDateTimeOfBirth($fisa["data_nastere"]);
+$pid->setPhoneNumberHome($fisa["telefon"], null, null, $fisa["email"]);
+$pid->setPatientIdentifierList($fisa["id_pacient"]);
 $msg->addSegment($pid);
 
 // Adaugam segment pentru diagnostic
-$dg1 = new DG1();
-$dg1->setID($diagnostice["id"]);
-$dg1->setDiagnosisCodeDG1($diagnostice["cod"]);
-$dg1->setDiagnosisDescription($diagnostice["denumire"]);
-$dg1->setDiagnosisDateTime($diagnostice["data_adaugare"]);
-$msg->addSegment($dg1);
+foreach($diagnostice as $diagnostic){
+    $dg1 = new DG1();
+    $dg1->setID((int)$diagnostic["id"]);
+    $dg1->setDiagnosisCodeDG1($diagnostic["cod"]);
+    $dg1->setDiagnosisDescription($diagnostic["denumire"]);
+    $dg1->setDiagnosisDateTime($diagnostic["data_adaugare"]);
+    $dg1->setDiagnosisType('F');
+    $msg->addSegment($dg1);
+}
 
 
-// Adaugam segment pentru 
+
+// Adaugam segment pentru tratamente
+$rxg = new Segment("RXG");
+$rxg->setField(1, (int)$tratamente["id"]);
+$rxg->setField(4, $tratamente["cod"]);
+$rxg->setField(5, 1);
+$rxg->setField(7, 1);
+
+//Adaugam segment pentru acord donare
+$con = new Segment ("CON");
+$con->setField(1, (int)$fisa["id_pacient"]);
+$con->setField(2, "091");
+
+//Adaugam segment pentru locatie
+$pv1 = new PV1();
+$pv1->setPatientClass(N);
+$pv1->setAssignedPatientLocation((int)$fisa["id_spital"]);
+
 // Create any custom segment
 $abc = new Segment('OBX');
 $abc->setField(1, 'xyz');
