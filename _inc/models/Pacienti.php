@@ -74,7 +74,13 @@ class Pacienti extends Db{
         $rezultat = $this->getQuerry($query);
 
     }
-    
+    public function getPacientbyCNP($cnp){
+        $query = "SELECT `pacienti`.`id` from `pacienti`
+        WHERE `cnp` = '".$cnp."'";
+        $rezultat = $this->getQuerry($query);
+        $pacient = $this->getRow($rezultat);
+        return $pacient["id"];
+    }
     
 }
 ?>
