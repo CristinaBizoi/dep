@@ -75,7 +75,7 @@ foreach($diagnostice as $diagnostic){
     $dg1->setID((int)$diagnostic["id"]);
     $dg1->setDiagnosisCodeDG1($diagnostic["cod"]);
     $dg1->setDiagnosisDescription($diagnostic["denumire"]);
-    $dg1->setDiagnosisDateTime($diagnostic["data_adaugare"]);
+    $dg1->setDiagnosisDateTime(date("YmdHis",strtotime($diagnostic["data_adaugare"])));
     $dg1->setDiagnosisType('F');
     $msg->addSegment($dg1);
 }
@@ -102,7 +102,8 @@ $msg->addSegment($con);
 //Adaugam segment pentru locatie
 $pv1 = new PV1();
 $pv1->setPatientClass("N");
-$pv1->setAssignedPatientLocation((int)$fisa["nume_spital"]);
+$pv1->setAssignedPatientLocation($fisa["nume_spital"]);
+$pv1->setConsultingDoctor([$fisa["id_user"],$fisa["nume_utilizator"],$fisa["nume_utilizator"]]);
 $msg->addSegment($pv1);
 
 // Create any custom segment
