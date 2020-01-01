@@ -88,6 +88,7 @@ foreach($tratamente as $tratament){
     $rxg->setField(4, $tratament["cod"]);
     $rxg->setField(5, 1);
     $rxg->setField(7, 1);
+    $msg->addSegment($rxg);
 }
 
 
@@ -95,11 +96,13 @@ foreach($tratamente as $tratament){
 $con = new Segment ("CON");
 $con->setField(1, (int)$fisa["id_pacient"]);
 $con->setField(2, "091");
+$msg->addSegment($con);
 
 //Adaugam segment pentru locatie
 $pv1 = new PV1();
 $pv1->setPatientClass("N");
 $pv1->setAssignedPatientLocation((int)$fisa["id_spital"]);
+$msg->addSegment($pv1);
 
 // Create any custom segment
 $abc = new Segment('OBX');
