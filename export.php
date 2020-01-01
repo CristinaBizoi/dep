@@ -52,6 +52,8 @@ $sexe = array(
 $msg = new Message(); // Either \n or \r can be used as segment endings
 
 $msh = new MSH();
+$msh->setMessageType("T");
+$msh->setProcessingId("ADT");
 $msg->addSegment($msh); // Message is: "MSH|^~\&|||||20171116140058|||2017111614005840157||2.3|\n"
 
 
@@ -62,7 +64,7 @@ $pid->setPatientID($fisa["cnp"]);
 $pid->setPatientName([$fisa["nume_pacient"], $fisa["prenume_pacient"]]); // Use a setter method to add patient's name at standard position (PID.5)
 $pid->setSex($sexe[$fisa["sex"]]);
 $pid->setDateTimeOfBirth($fisa["data_nastere"]);
-$pid->setPhoneNumberHome($fisa["telefon"], null, null, $fisa["email"]);
+$pid->setPhoneNumberHome([$fisa["telefon"], null, null, $fisa["email"]]);
 $pid->setPatientIdentifierList($fisa["id_pacient"]);
 $msg->addSegment($pid);
 
@@ -80,11 +82,14 @@ foreach($diagnostice as $diagnostic){
 
 
 // Adaugam segment pentru tratamente
-$rxg = new Segment("RXG");
-$rxg->setField(1, (int)$tratamente["id"]);
-$rxg->setField(4, $tratamente["cod"]);
-$rxg->setField(5, 1);
-$rxg->setField(7, 1);
+foreach($tratamente as $tratament){
+    $rxg = new Segment("RXG");
+    $rxg->setField(1, (int)$tratament["id"]);
+    $rxg->setField(4, $tratament["cod"]);
+    $rxg->setField(5, 1);
+    $rxg->setField(7, 1);
+}
+
 
 //Adaugam segment pentru acord donare
 $con = new Segment ("CON");
@@ -93,7 +98,7 @@ $con->setField(2, "091");
 
 //Adaugam segment pentru locatie
 $pv1 = new PV1();
-$pv1->setPatientClass(N);
+$pv1->setPatientClass("N");
 $pv1->setAssignedPatientLocation((int)$fisa["id_spital"]);
 
 // Create any custom segment
