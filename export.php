@@ -109,7 +109,7 @@ $msg->addSegment($pv1);
 $obx = new OBX();
 $obx->setValueType($fisa["observatii"]);
 $obx->setObservationIdentifier((int)$id);
-$msg->setSegment($obx);
+$msg->addSegment($obx);
 
 
 echo nl2br($msg->toString(true));
