@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aranyasen/hl7",
-            "version": "1.8.0",
+            "version": "1.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/senaranya/HL7.git",
-                "reference": "9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe"
+                "reference": "3f2cc9851bd9d093490353792ad416f7d7386aa5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/senaranya/HL7/zipball/9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe",
-                "reference": "9c2326d4e63a5dbcf8a8f5543242ac706c46e6fe",
+                "url": "https://api.github.com/repos/senaranya/HL7/zipball/3f2cc9851bd9d093490353792ad416f7d7386aa5",
+                "reference": "3f2cc9851bd9d093490353792ad416f7d7386aa5",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +52,7 @@
                 }
             ],
             "description": "HL7 parser, generator and sender.",
-            "time": "2019-11-06T04:43:50+00:00"
+            "time": "2019-12-09T04:10:39+00:00"
         }
     ],
     "packages-dev": [],

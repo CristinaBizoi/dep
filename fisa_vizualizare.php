@@ -46,11 +46,11 @@ if(isset($_GET["id"]) && $_GET["id"]>0){
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="./dashboard">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="./pacienti_listare">Pacienti</a></li>
-        <li class="breadcrumb-item active">Adaugare fisa</li>
+        <li class="breadcrumb-item active">Vizularizare fisa</li>
     </ol>
 
     <!-- Page Content -->
-    <h1>Fisa (<?php echo $id; ?>)</h1>
+    <h1>Fisa (<?php echo $id; ?>) <a href="./export?id=<?php echo $id; ?>" class="export-btn"><i class="fa fa-download"></i></a></h1>
     <hr>
     <h2>Medic</h2>
     <hr>

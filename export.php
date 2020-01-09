@@ -1,6 +1,7 @@
 <?php
 use Aranyasen\HL7\Message;
 use Aranyasen\HL7\Segment;
+use Aranyasen\HL7\Segments\EVN;
 use Aranyasen\HL7\Segments\MSH;
 use Aranyasen\HL7\Segments\PID;
 use Aranyasen\HL7\Segments\DG1;
@@ -69,6 +70,12 @@ $pid->setPhoneNumberHome([$fisa["telefon"], null, null, $fisa["email"]]);
 $pid->setPatientIdentifierList($fisa["id_pacient"]);
 $msg->addSegment($pid);
 
+$env = new EVN();
+$env->setEventTypeCode("A01");
+$env->setRecordedDateTime(date("YmdHis",strtotime($fisa["data_adaugare"])));
+$env->setOperatorID($fisa["id_user"]);
+
+$msg->addSegment($env);
 // Adaugam segment pentru diagnostic
 foreach($diagnostice as $diagnostic){
     $dg1 = new DG1();

@@ -10722,3 +10722,9 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+/* CUSTOM CSS */
+
+.export-btn{
+  font-size: 14px !important;
+}
