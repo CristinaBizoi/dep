@@ -20,6 +20,13 @@
           <span>Utilizatori</span></a>
       </li>
       <?php } ?>
+      <?php if(isset($_SESSION["type"]) && $_SESSION["type"]=="user"){ ?>
+      <li class="nav-item">
+        <a class="nav-link" href="./import_file">
+        <i class="fas fa-users"></i>
+          <span>Importa Fisa Medicala</span></a>
+      </li>
+      <?php } ?>
       <?php if(isset($_SESSION["type"]) && $_SESSION["type"]=="pacient"){ ?>
       <li class="nav-item">
         <a class="nav-link" href="./pacient_fise?id=<?php echo $_SESSION["user_id"]; ?>">

@@ -19,6 +19,8 @@
 
   <!-- Custom styles for this template-->
   <link href="./public/css/sb-admin.css" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
   <script src="./public/vendor/jquery/jquery.min.js"></script>
 </head>

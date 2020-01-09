@@ -7,7 +7,6 @@ use Aranyasen\HL7\Segments\DG1;
 use Aranyasen\HL7\Segments\PV1;
 use Aranyasen\HL7\Segments\OBX;
 
-$file = file_get_contents('./mesaj_hl7.php');
 $msg = new Message($file);
 $pid = $msg->getSegmentByIndex(1);
 $pacient_cnp = $pid->getField(2);
@@ -33,7 +32,7 @@ $pacient_cnp = $pid->getField(2);
     "id_pacient" => \strval($pacient_id) ,
     "id_spital" => \strval($spital_id),
     "id_utilizator" =>  $_SESSION["user_id"],
-    "tip_fisa" => ""
+    "tip_fisa" =>"1"
 ];
     $fisaId = $fiseMedicaleModel->addFisa($data);
 
@@ -56,7 +55,7 @@ $pacient_cnp = $pid->getField(2);
         $data_diagnostic = [
             "cod" => $cod_diagnostic,
             "denumire" =>  $nume_diagnostic,
-            "tip_fisa" => ""
+            "id_fisa" => $fisaId
         ];
         $diagnosticModel->addDiagnostic($data_diagnostic);
     }
