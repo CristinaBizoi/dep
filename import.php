@@ -23,10 +23,17 @@ $pacient_cnp = $pid->getField(2);
   $pacientiModel = new Pacienti();
   $spitaleModel = new Spitale();
   $pacient_id = $pacientiModel->getPacientbyCNP($pacient_cnp);
-  $observatii = $msg->getSegmentsByName('OBX')[0]->getField(2);
-  $spital_nume = $msg->getSegmentsByName('PV1')[0]->getField(3);
-  $spital_id = $spitaleModel->getSpitalByName($spital_nume);
+    if($msg->hasSegment('OBX')){
+        $observatii = $msg->getSegmentsByName('OBX')[0]->getField(2);
+    }
+//   $observatii = $msg->getSegmentsByName('OBX')[0]->getField(2);
+    if($msg->hasSegment('PV1')){
+        $spital_nume = $msg->getSegmentsByName('PV1')[0]->getField(3);
+        $spital_id = $spitaleModel->getSpitalByName($spital_nume);
 
+    }
+//   $spital_nume = $msg->getSegmentsByName('PV1')[0]->getField(3);
+  
   $data = [
     "observatii" => $observatii,
     "id_pacient" => \strval($pacient_id) ,
@@ -35,27 +42,30 @@ $pacient_cnp = $pid->getField(2);
     "tip_fisa" =>"1"
 ];
     $fisaId = $fiseMedicaleModel->addFisa($data);
-
-    $tratamente = $msg->getSegmentsByName('RXG');
-    foreach($tratamente as $tratament){
-        $tratament_cod = $tratament->getField(4);
-        $denumire ="";
-        $data_tratament = [
-            "cod" => $tratament_cod,
-            "denumire" =>  $denumire,
-            "id_fisa" => $fisaId
-        ];
-        $tratamentModel->addTratament($data_tratament);
+    if($msg->hasSegment('RXG')){
+        $tratamente = $msg->getSegmentsByName('RXG');
+        foreach($tratamente as $tratament){
+            $tratament_cod = $tratament->getField(4);
+            $denumire ="";
+            $data_tratament = [
+                "cod" => $tratament_cod,
+                "denumire" =>  $denumire,
+                "id_fisa" => $fisaId
+            ];
+            $tratamentModel->addTratament($data_tratament);
+        }
     }
-   
-    $diagnostice = $msg->getSegmentsByName('DG1');
-    foreach($diagnostice as $diagnostic){
-        $cod_diagnostic = $diagnostic->getField(3);
-        $nume_diagnostic = $diagnostic->getField(4);
-        $data_diagnostic = [
-            "cod" => $cod_diagnostic,
-            "denumire" =>  $nume_diagnostic,
-            "id_fisa" => $fisaId
-        ];
-        $diagnosticModel->addDiagnostic($data_diagnostic);
+    if($msg->hasSegment('DG1')){
+        $diagnostice = $msg->getSegmentsByName('DG1');
+        foreach($diagnostice as $diagnostic){
+            $cod_diagnostic = $diagnostic->getField(3);
+            $nume_diagnostic = $diagnostic->getField(4);
+            $data_diagnostic = [
+                "cod" => $cod_diagnostic,
+                "denumire" =>  $nume_diagnostic,
+                "id_fisa" => $fisaId
+            ];
+            $diagnosticModel->addDiagnostic($data_diagnostic);
+    }
+    
     }
