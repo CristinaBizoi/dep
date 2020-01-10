@@ -79,7 +79,7 @@ class Pacienti extends Db{
         WHERE `cnp` = '".$cnp."'";
         $rezultat = $this->getQuerry($query);
         $pacient = $this->getRow($rezultat);
-        return $pacient["id"];
+        return (isset($pacient["id"]))?$pacient["id"]:null;
     }
     
 }

@@ -1,5 +1,7 @@
 <?php
 // logare
+error_reporting(E_ALL);
+ini_set("display_errors", 0);
 session_start();
 include("./config/db_config.php");
 include("./_inc/classes/Db.php");
@@ -78,4 +80,3 @@ if(is_file("./".$page.".php")){
 
 ?>
 
-     

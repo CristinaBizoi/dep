@@ -15,8 +15,16 @@ $storeFolder = 'uploads';   //2
  
 if (!empty($_FILES)) {
      
-    $tempFile = $_FILES['file']['tmp_name'];          //3             
-      
+    $tempFile = $_FILES['file']['tmp_name'];          //3
+    //
+    $allowed = array('txt');
+    $filename = $_FILES['file']['name'];
+    $ext = pathinfo($filename, PATHINFO_EXTENSION);
+    if (!in_array($ext, $allowed)) {
+        http_response_code(400);
+        echo 'Invalid file format. Please use .txt files';
+        exit();
+    }
     $targetPath = dirname( __FILE__ ) . $ds. 'public' .$ds. $storeFolder . $ds;  //4
      
     $targetFile =  $targetPath. $_FILES['file']['name'];  //5

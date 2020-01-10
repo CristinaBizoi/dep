@@ -23,10 +23,18 @@ $pacient_cnp = $pid->getField(2);
   $pacientiModel = new Pacienti();
   $spitaleModel = new Spitale();
   $pacient_id = $pacientiModel->getPacientbyCNP($pacient_cnp);
+
+  if(empty($pacient_id)){
+      http_response_code(400);
+      echo "Pacientul nu exista fisa nu a putut fi adaugata";
+      exit();
+  }
+    $observatii ="";
     if($msg->hasSegment('OBX')){
         $observatii = $msg->getSegmentsByName('OBX')[0]->getField(2);
     }
 //   $observatii = $msg->getSegmentsByName('OBX')[0]->getField(2);
+    $spital_id = 1; // default
     if($msg->hasSegment('PV1')){
         $spital_nume = $msg->getSegmentsByName('PV1')[0]->getField(3);
         $spital_id = $spitaleModel->getSpitalByName($spital_nume);
@@ -68,4 +76,4 @@ $pacient_cnp = $pid->getField(2);
             $diagnosticModel->addDiagnostic($data_diagnostic);
     }
     
-    }
+}
